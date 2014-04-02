@@ -1,0 +1,460 @@
+
+-- Table: android_metadata
+CREATE TABLE android_metadata ( 
+    locale TEXT DEFAULT 'en_US' 
+);
+
+INSERT INTO [android_metadata] ([locale]) VALUES ('en_US');
+
+-- Table: NounDeclension1
+CREATE TABLE NounDeclension1 ( 
+    _id  INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+    Type,
+    NomS,
+    AccS,
+    GenS,
+    DatS,
+    AblS,
+    VocS,
+    NomP,
+    AccP,
+    GenP,
+    DatP,
+    AblP,
+    VocP 
+);
+
+INSERT INTO [NounDeclension1] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (1, 'stella', 'a', 'am', 'ae', 'ae', 'a', 'a', 'ae', 'as', 'arum', 'is', 'is', 'ae');
+INSERT INTO [NounDeclension1] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (2, 'nymphe', 'e', 'en', 'es', 'ae', 'e', 'e', 'ae', 'as', 'arum', 'is', 'is', 'ae');
+INSERT INTO [NounDeclension1] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (3, 'cometes', 'es', 'en', 'ae', 'ae', 'a', 'e', 'ae', 'as', 'arum', 'is', 'is', 'ae');
+INSERT INTO [NounDeclension1] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (4, 'cometes', 'es', 'am', 'ae', 'ae', 'a', 'a', 'ae', 'as', 'arum', 'is', 'is', 'ae');
+INSERT INTO [NounDeclension1] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (5, 'xiphias', 'as', 'an', 'ae', 'ae', 'a', 'a', 'ae', 'as', 'arum', 'is', 'is', 'ae');
+INSERT INTO [NounDeclension1] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (6, 'xiphias', 'as', 'am', 'ae', 'ae', 'a', 'a', 'ae', 'as', 'arum', 'is', 'is', 'ae');
+
+-- Table: NounDeclension3
+CREATE TABLE NounDeclension3 ( 
+    _id  INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+    Type,
+    NomS,
+    AccS,
+    GenS,
+    DatS,
+    AblS,
+    VocS,
+    NomP,
+    AccP,
+    GenP,
+    DatP,
+    AblP,
+    VocP 
+);
+
+INSERT INTO [NounDeclension3] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (1, 'homo', null, 'em', 'is', 'i', 'e', null, 'es', 'es', 'um', 'ibus', 'ibus', 'es');
+INSERT INTO [NounDeclension3] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (2, 'nomen', null, null, 'is', 'i', 'e', null, 'a', 'a', 'um', 'ibus', 'ibus', 'a');
+INSERT INTO [NounDeclension3] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (3, 'nox', null, 'em', 'is', 'i', 'e', null, 'es', 'es', 'ium', 'ibus', 'ibus', 'es');
+INSERT INTO [NounDeclension3] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (4, 'animal', null, null, 'is', 'i', 'e', null, 'ia', 'ia', 'ium', 'ibus', 'ibus', 'ia');
+INSERT INTO [NounDeclension3] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (5, 'aer', null, 'a', 'is', 'i', 'e', null, 'es', 'es', 'um', 'ibus', 'ibus', 'es');
+INSERT INTO [NounDeclension3] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (6, 'aer', null, 'em', 'is', 'i', 'e', null, 'es', 'es', 'um', 'ibus', 'ibus', 'es');
+INSERT INTO [NounDeclension3] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (7, 'tigris', null, 'im', 'is', 'i', 'e', null, 'es', 'is', 'ium', 'ibus', 'ibus', 'es');
+INSERT INTO [NounDeclension3] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (8, 'tigris', null, 'in', 'is', 'i', 'i', null, 'es', 'as', 'ium', 'ibus', 'ibus', 'es');
+
+-- Table: NounDeclension4
+CREATE TABLE NounDeclension4 ( 
+    _id  INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+    Type,
+    NomS,
+    AccS,
+    GenS,
+    DatS,
+    AblS,
+    VocS,
+    NomP,
+    AccP,
+    GenP,
+    DatP,
+    AblP,
+    VocP 
+);
+
+INSERT INTO [NounDeclension4] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (1, 'cursus', 'us', 'um', 'us', 'ui', 'u', 'us', 'us', 'us', 'uum', 'ibus', 'ibus', 'us');
+INSERT INTO [NounDeclension4] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (2, 'cornu', 'u', 'u', 'us', 'u', 'u', 'u', 'ua', 'ua', 'uum', 'ibus', 'ibus', 'ua');
+
+-- Table: NounDeclension2
+CREATE TABLE NounDeclension2 ( 
+    _id  INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+    Type,
+    NomS,
+    AccS,
+    GenS,
+    DatS,
+    AblS,
+    VocS,
+    NomP,
+    AccP,
+    GenP,
+    DatP,
+    AblP,
+    VocP 
+);
+
+INSERT INTO [NounDeclension2] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (1, 'servus', 'us', 'um', 'i', 'o', 'o', 'e', 'i', 'os', 'orum', 'is', 'is', 'i');
+INSERT INTO [NounDeclension2] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (2, 'bellum', 'um', 'um', 'i', 'o', 'o', 'um', 'a', 'a', 'orum', 'is', 'is', 'a');
+INSERT INTO [NounDeclension2] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (3, 'vir', null, 'um', 'i', 'o', 'o', 'e', 'i', 'os', 'orum', 'is', 'is', 'i');
+INSERT INTO [NounDeclension2] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (4, 'puer', null, 'um', 'i', 'o', 'o', 'e', 'i', 'os', 'orum', 'is', 'is', 'i');
+INSERT INTO [NounDeclension2] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (5, 'filius', 'us', 'um', 'i', 'o', 'o', null, 'i', 'os', 'orum', 'is', 'is', 'i');
+
+-- Table: NounDeclension5
+CREATE TABLE NounDeclension5 ( 
+    _id  INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+    Type,
+    NomS,
+    AccS,
+    GenS,
+    DatS,
+    AblS,
+    VocS,
+    NomP,
+    AccP,
+    GenP,
+    DatP,
+    AblP,
+    VocP 
+);
+
+INSERT INTO [NounDeclension5] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (1, 'dies', 'es', 'em', 'ei', 'ei', 'e', 'es', 'es', 'es', 'erum', 'ebus', 'ebus', 'es');
+
+-- Table: NounIrregular
+CREATE TABLE NounIrregular ( 
+    _id  INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+    Type,
+    NomS,
+    AccS,
+    GenS,
+    DatS,
+    AblS,
+    VocS,
+    NomP,
+    AccP,
+    GenP,
+    DatP,
+    AblP,
+    VocP 
+);
+
+
+-- Table: Noun
+CREATE TABLE Noun ( 
+    _id        INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+    Lemma,
+    Gender,
+    Stem,
+    Declension,
+    Note 
+);
+
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (1, 'dominus', 'm', 'domin', 'servus', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (2, 'servus', 'm', 'serv', 'servus', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (3, 'bellum', 'n', 'bell', 'bellum', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (4, 'vir', 'm', 'vir', 'vir', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (5, 'puer', 'm', 'puer', 'puer', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (6, 'filius', 'm', 'fili', 'filius', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (7, 'stella', 'f', 'stell', 'stella', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (8, 'nymphe', 'f', 'nymph', 'nymphe', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (9, 'cometes', 'm', 'comet', 'cometes', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (10, 'xiphias', 'f', 'xiphi', 'xiphias', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (11, 'homo', 'm', 'homin', 'homo', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (12, 'nomen', 'n', 'nomin', 'nomen', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (13, 'nox', 'f', 'noct', 'nox', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (14, 'animal', 'n', 'animal', 'animal', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (15, 'aer', 'm', 'aer', 'aer', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (16, 'tigris', 'm', 'tigrid', 'tigris', '*');
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (17, 'tigris', 'f', 'tigr', 'tigris', '*');
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (18, 'cursus', 'm', 'curs', 'cursus', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (19, 'cornu', 'n', 'corn', 'cornu', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (20, 'dies', 'm', 'di', 'dies', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (21, 'res', 'f', 'r', 'dies', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (22, 'manus', 'f', 'man', 'cursus', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (23, 'domus', 'f', 'dom', 'cursus', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (24, 'pecus', 'f', 'pecud', 'nox', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (25, 'genu', 'n', 'gen', 'cornu', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (26, 'arcus', 'm', 'arc', 'arcus', null);
+INSERT INTO [Noun] ([_id], [Lemma], [Gender], [Stem], [Declension], [Note]) VALUES (27, 'domus', 'f', 'dom', 'servus', null);
+
+-- Table: Verb
+CREATE TABLE Verb ( 
+    _id         INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+    PP1,
+    PP2,
+    PP3,
+    PP4,
+    StemPresent,
+    StemPerfect,
+    StemSupine,
+    Conjugation,
+    Note 
+);
+
+INSERT INTO [Verb] ([_id], [PP1], [PP2], [PP3], [PP4], [StemPresent], [StemPerfect], [StemSupine], [Conjugation], [Note]) VALUES (1, 'lego', 'legere', 'legi', 'lectum', 'leg', 'leg', 'lect', 3, null);
+INSERT INTO [Verb] ([_id], [PP1], [PP2], [PP3], [PP4], [StemPresent], [StemPerfect], [StemSupine], [Conjugation], [Note]) VALUES (2, 'amo', 'amare', 'amavi', 'amatum', 'am', 'amat', 'amat', 1, null);
+INSERT INTO [Verb] ([_id], [PP1], [PP2], [PP3], [PP4], [StemPresent], [StemPerfect], [StemSupine], [Conjugation], [Note]) VALUES (3, 'moneo', 'monere', 'monui', 'monitum', 'mon', 'monu', 'monit', 2, null);
+INSERT INTO [Verb] ([_id], [PP1], [PP2], [PP3], [PP4], [StemPresent], [StemPerfect], [StemSupine], [Conjugation], [Note]) VALUES (4, 'audio', 'audire', 'audivi', 'auditum', 'aud', 'audiv', 'audit', 4, null);
+
+-- Table: VerbEndActImpPres
+CREATE TABLE VerbEndActImpPres ( 
+    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    [End],
+    Voice,
+    Mood,
+    Tense,
+    Person,
+    Number 
+);
+
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'a', 'act', 'imp', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'e', 'act', 'imp', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'e', 'act', 'imp', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'i', 'act', 'imp', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (5, 'ate', 'act', 'imp', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (6, 'ete', 'act', 'imp', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (7, 'ite', 'act', 'imp', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (8, 'ite', 'act', 'imp', 'pres', 2, 'plur');
+
+-- Table: VerbEndActImpFut
+CREATE TABLE VerbEndActImpFut ( 
+    _id    INTEGER PRIMARY KEY,
+    [End],
+    Voice,
+    Mood,
+    Tense,
+    Person,
+    Number 
+);
+
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'ato', 'act', 'imp', 'fut', 2, 'sing');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'eto', 'act', 'imp', 'fut', 2, 'sing');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'ito', 'act', 'imp', 'fut', 2, 'sing');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'ito', 'act', 'imp', 'fut', 2, 'sing');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (5, 'ato', 'act', 'imp', 'fut', 3, 'sing');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (6, 'eto', 'act', 'imp', 'fut', 3, 'sing');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (7, 'ito', 'act', 'imp', 'fut', 3, 'sing');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (8, 'ito', 'act', 'imp', 'fut', 3, 'sing');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (9, 'atote', 'act', 'imp', 'fut', 2, 'plur');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (10, 'etote', 'act', 'imp', 'fut', 2, 'plur');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (11, 'itote', 'act', 'imp', 'fut', 2, 'plur');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (12, 'itote', 'act', 'imp', 'fut', 2, 'plur');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (13, 'anto', 'act', 'imp', 'fut', 3, 'plur');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (14, 'ento', 'act', 'imp', 'fut', 3, 'plur');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (15, 'unto', 'act', 'imp', 'fut', 3, 'plur');
+INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (16, 'iunto', 'act', 'imp', 'fut', 3, 'plur');
+
+-- Table: VerbEndActIndFut
+CREATE TABLE VerbEndActIndFut ( 
+    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    [End],
+    Voice,
+    Mood,
+    Tense,
+    Person,
+    Number 
+);
+
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'abo', 'act', 'ind', 'fut', 1, 'sing');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'ebo', 'act', 'ind', 'fut', 1, 'sing');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'am', 'act', 'ind', 'fut', 1, 'sing');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'iam', 'act', 'ind', 'fut', 1, 'sing');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (5, 'abis', 'act', 'ind', 'fut', 2, 'sing');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (6, 'ebis', 'act', 'ind', 'fut', 2, 'sing');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (7, 'es', 'act', 'ind', 'fut', 2, 'sing');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (8, 'ies', 'act', 'ind', 'fut', 2, 'sing');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (9, 'abit', 'act', 'ind', 'fut', 3, 'sing');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (10, 'ebit', 'act', 'ind', 'fut', 3, 'sing');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (11, 'et', 'act', 'ind', 'fut', 3, 'sing');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (12, 'iet', 'act', 'ind', 'fut', 3, 'sing');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (13, 'abimus', 'act', 'ind', 'fut', 1, 'plur');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (14, 'ebimus', 'act', 'ind', 'fut', 1, 'plur');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (15, 'emus', 'act', 'ind', 'fut', 1, 'plur');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (16, 'iemus', 'act', 'ind', 'fut', 1, 'plur');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (17, 'abitis', 'act', 'ind', 'fut', 2, 'plur');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (18, 'ebitis', 'act', 'ind', 'fut', 2, 'plur');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (19, 'etis', 'act', 'ind', 'fut', 2, 'plur');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (20, 'ietis', 'act', 'ind', 'fut', 2, 'plur');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (21, 'abunt', 'act', 'ind', 'fut', 3, 'plur');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (22, 'ebunt', 'act', 'ind', 'fut', 3, 'plur');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (23, 'ent', 'act', 'ind', 'fut', 3, 'plur');
+INSERT INTO [VerbEndActIndFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (24, 'ient', 'act', 'ind', 'fut', 3, 'plur');
+
+-- Table: VerbEndActIndImperf
+CREATE TABLE VerbEndActIndImperf ( 
+    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    [End],
+    Voice,
+    Mood,
+    Tense,
+    Person,
+    Number 
+);
+
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'abam', 'act', 'ind', 'imperf', 1, 'sing');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'ebam', 'act', 'ind', 'imperf', 1, 'sing');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'ebam', 'act', 'ind', 'imperf', 1, 'sing');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'iebam', 'act', 'ind', 'imperf', 1, 'sing');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (5, 'abas', 'act', 'ind', 'imperf', 2, 'sing');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (6, 'ebas', 'act', 'ind', 'imperf', 2, 'sing');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (7, 'ebas', 'act', 'ind', 'imperf', 2, 'sing');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (8, 'iebas', 'act', 'ind', 'imperf', 2, 'sing');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (9, 'abat', 'act', 'ind', 'imperf', 3, 'sing');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (10, 'ebat', 'act', 'ind', 'imperf', 3, 'sing');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (11, 'ebat', 'act', 'ind', 'imperf', 3, 'sing');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (12, 'iebat', 'act', 'ind', 'imperf', 3, 'sing');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (13, 'abamus', 'act', 'ind', 'imperf', 1, 'plur');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (14, 'ebamus', 'act', 'ind', 'imperf', 1, 'plur');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (15, 'ebamus', 'act', 'ind', 'imperf', 1, 'plur');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (16, 'iebamus', 'act', 'ind', 'imperf', 1, 'plur');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (17, 'abatis', 'act', 'ind', 'imperf', 2, 'plur');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (18, 'ebatis', 'act', 'ind', 'imperf', 2, 'plur');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (19, 'ebatis', 'act', 'ind', 'imperf', 2, 'plur');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (20, 'iebatis', 'act', 'ind', 'imperf', 2, 'plur');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (21, 'abant', 'act', 'ind', 'imperf', 3, 'plur');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (22, 'ebant', 'act', 'ind', 'imperf', 3, 'plur');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (23, 'ebant', 'act', 'ind', 'imperf', 3, 'plur');
+INSERT INTO [VerbEndActIndImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (24, 'iebant', 'act', 'ind', 'imperf', 3, 'plur');
+
+-- Table: VerbEndActIndPres
+CREATE TABLE VerbEndActIndPres ( 
+    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    [End],
+    Voice,
+    Mood,
+    Tense,
+    Person,
+    Number 
+);
+
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'o', 'act', 'ind', 'pres', 1, 'sing');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'eo', 'act', 'ind', 'pres', 1, 'sing');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'o', 'act', 'ind', 'pres', 1, 'sing');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'io', 'act', 'ind', 'pres', 1, 'sing');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (5, 'as', 'act', 'ind', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (6, 'es', 'act', 'ind', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (7, 'is', 'act', 'ind', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (8, 'is', 'act', 'ind', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (9, 'at', 'act', 'ind', 'pres', 3, 'sing');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (10, 'et', 'act', 'ind', 'pres', 3, 'sing');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (11, 'it', 'act', 'ind', 'pres', 3, 'sing');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (12, 'it', 'act', 'ind', 'pres', 3, 'sing');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (13, 'amus', 'act', 'ind', 'pres', 1, 'plur');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (14, 'emus', 'act', 'ind', 'pres', 1, 'plur');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (15, 'imus', 'act', 'ind', 'pres', 1, 'plur');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (16, 'imus', 'act', 'ind', 'pres', 1, 'plur');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (17, 'atis', 'act', 'ind', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (18, 'etis', 'act', 'ind', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (19, 'itis', 'act', 'ind', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (20, 'itis', 'act', 'ind', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (21, 'iunt', 'act', 'ind', 'pres', 3, 'plur');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (22, 'ant', 'act', 'ind', 'pres', 3, 'plur');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (23, 'ent', 'act', 'ind', 'pres', 3, 'plur');
+INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (24, 'unt', 'act', 'ind', 'pres', 3, 'plur');
+
+-- Table: VerbEndActSubjImperf
+CREATE TABLE VerbEndActSubjImperf ( 
+    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    [End],
+    Voice,
+    Mood,
+    Tense,
+    Person,
+    Number 
+);
+
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'arem', 'act', 'subj', 'imperf', 1, 'sing');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'erem', 'act', 'subj', 'imperf', 1, 'sing');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'erem', 'act', 'subj', 'imperf', 1, 'sing');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'irem', 'act', 'subj', 'imperf', 1, 'sing');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (5, 'ares', 'act', 'subj', 'imperf', 2, 'sing');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (6, 'eres', 'act', 'subj', 'imperf', 2, 'sing');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (7, 'eres', 'act', 'subj', 'imperf', 2, 'sing');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (8, 'ires', 'act', 'subj', 'imperf', 2, 'sing');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (9, 'aret', 'act', 'subj', 'imperf', 3, 'sing');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (10, 'eret', 'act', 'subj', 'imperf', 3, 'sing');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (11, 'eret', 'act', 'subj', 'imperf', 3, 'sing');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (12, 'iret', 'act', 'subj', 'imperf', 3, 'sing');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (13, 'aremus', 'act', 'subj', 'imperf', 1, 'plur');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (14, 'eremus', 'act', 'subj', 'imperf', 1, 'plur');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (15, 'eremus', 'act', 'subj', 'imperf', 1, 'plur');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (16, 'iremus', 'act', 'subj', 'imperf', 1, 'plur');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (17, 'aretis', 'act', 'subj', 'imperf', 2, 'plur');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (18, 'eretis', 'act', 'subj', 'imperf', 2, 'plur');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (19, 'eretis', 'act', 'subj', 'imperf', 2, 'plur');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (20, 'iretis', 'act', 'subj', 'imperf', 2, 'plur');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (21, 'arent', 'act', 'subj', 'imperf', 3, 'plur');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (22, 'erent', 'act', 'subj', 'imperf', 3, 'plur');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (23, 'erent', 'act', 'subj', 'imperf', 3, 'plur');
+INSERT INTO [VerbEndActSubjImperf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (24, 'irent', 'act', 'subj', 'imperf', 3, 'plur');
+
+-- Table: VerbEndActSubjPres
+CREATE TABLE VerbEndActSubjPres ( 
+    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    [End],
+    Voice,
+    Mood,
+    Tense,
+    Person,
+    Number 
+);
+
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'em', 'act', 'subj', 'pres', 1, 'sing');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'eam', 'act', 'subj', 'pres', 1, 'sing');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'am', 'act', 'subj', 'pres', 1, 'sing');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'iam', 'act', 'subj', 'pres', 1, 'sing');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (5, 'es', 'act', 'subj', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (6, 'eas', 'act', 'subj', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (7, 'as', 'act', 'subj', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (8, 'ias', 'act', 'subj', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (9, 'et', 'act', 'subj', 'pres', 3, 'sing');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (10, 'etis', 'act', 'subj', 'pres', 3, 'sing');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (11, 'eatis', 'act', 'subj', 'pres', 3, 'sing');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (12, 'atis', 'act', 'subj', 'pres', 3, 'sing');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (13, 'iatis', 'act', 'subj', 'pres', 1, 'plur');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (14, 'ent', 'act', 'subj', 'pres', 1, 'plur');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (15, 'eant', 'act', 'subj', 'pres', 1, 'plur');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (16, 'ant', 'act', 'subj', 'pres', 1, 'plur');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (17, 'iant', 'act', 'subj', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (18, 'eat', 'act', 'subj', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (19, 'at', 'act', 'subj', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (20, 'iat', 'act', 'subj', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (21, 'emus', 'act', 'subj', 'pres', 3, 'plur');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (22, 'eamus', 'act', 'subj', 'pres', 3, 'plur');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (23, 'atmus', 'act', 'subj', 'pres', 3, 'plur');
+INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (24, 'iamus', 'act', 'subj', 'pres', 3, 'plur');
+
+-- Table: VerbEndActInfPerf
+CREATE TABLE VerbEndActInfPerf ( 
+    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    [End],
+    Voice,
+    Mood,
+    Tense,
+    Person,
+    Number 
+);
+
+INSERT INTO [VerbEndActInfPerf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'isse', 'act', 'inf', 'perf', null, null);
+INSERT INTO [VerbEndActInfPerf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'isse', 'act', 'inf', 'perf', null, null);
+INSERT INTO [VerbEndActInfPerf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'isse', 'act', 'inf', 'perf', null, null);
+INSERT INTO [VerbEndActInfPerf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'isse', 'act', 'inf', 'perf', null, null);
+
+-- Table: VerbEndActInfPres
+CREATE TABLE VerbEndActInfPres ( 
+    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    [End],
+    Voice,
+    Mood,
+    Tense,
+    Person,
+    Number 
+);
+
+INSERT INTO [VerbEndActInfPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'are', 'act', 'inf', 'pres', null, null);
+INSERT INTO [VerbEndActInfPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'ere', 'act', 'inf', 'pres', null, null);
+INSERT INTO [VerbEndActInfPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'ere', 'act', 'inf', 'pres', null, null);
+INSERT INTO [VerbEndActInfPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'ire', 'act', 'inf', 'pres', null, null);
