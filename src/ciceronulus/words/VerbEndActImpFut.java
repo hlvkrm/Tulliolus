@@ -10,16 +10,14 @@ public class VerbEndActImpFut extends VerbEnding{
 	String tense;
 	String person; 
 	String number;
-	String aspect;
-	
-	public VerbEndActImpFut(String end, String voice,String mood, String tense, String person, String number, String aspect) {
+
+	public VerbEndActImpFut(String end, String voice,String mood, String tense, String person, String number) {
 		this.end = end;
 		this.voice = voice;
 		this.mood = mood;
 		this.tense = tense;
 		this.person = person;
 		this.number = number;
-		this.aspect = aspect;
 		
 	}
 	
@@ -31,7 +29,6 @@ public class VerbEndActImpFut extends VerbEnding{
 		Parse.add(tense);
 		Parse.add(person);
 		Parse.add(number);
-		Parse.add(aspect);
 		
 		return Parse;
 		

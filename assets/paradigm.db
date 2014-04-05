@@ -123,25 +123,6 @@ CREATE TABLE NounDeclension5 (
 
 INSERT INTO [NounDeclension5] ([_id], [Type], [NomS], [AccS], [GenS], [DatS], [AblS], [VocS], [NomP], [AccP], [GenP], [DatP], [AblP], [VocP]) VALUES (1, 'dies', 'es', 'em', 'ei', 'ei', 'e', 'es', 'es', 'es', 'erum', 'ebus', 'ebus', 'es');
 
--- Table: NounIrregular
-CREATE TABLE NounIrregular ( 
-    _id  INTEGER PRIMARY KEY ASC AUTOINCREMENT,
-    Type,
-    NomS,
-    AccS,
-    GenS,
-    DatS,
-    AblS,
-    VocS,
-    NomP,
-    AccP,
-    GenP,
-    DatP,
-    AblP,
-    VocP 
-);
-
-
 -- Table: Noun
 CREATE TABLE Noun ( 
     _id        INTEGER PRIMARY KEY ASC AUTOINCREMENT,
@@ -199,26 +180,6 @@ INSERT INTO [Verb] ([_id], [PP1], [PP2], [PP3], [PP4], [StemPresent], [StemPerfe
 INSERT INTO [Verb] ([_id], [PP1], [PP2], [PP3], [PP4], [StemPresent], [StemPerfect], [StemSupine], [Conjugation], [Note]) VALUES (3, 'moneo', 'monere', 'monui', 'monitum', 'mon', 'monu', 'monit', 2, null);
 INSERT INTO [Verb] ([_id], [PP1], [PP2], [PP3], [PP4], [StemPresent], [StemPerfect], [StemSupine], [Conjugation], [Note]) VALUES (4, 'audio', 'audire', 'audivi', 'auditum', 'aud', 'audiv', 'audit', 4, null);
 
--- Table: VerbEndActImpPres
-CREATE TABLE VerbEndActImpPres ( 
-    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
-    [End],
-    Voice,
-    Mood,
-    Tense,
-    Person,
-    Number 
-);
-
-INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'a', 'act', 'imp', 'pres', 2, 'sing');
-INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'e', 'act', 'imp', 'pres', 2, 'sing');
-INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'e', 'act', 'imp', 'pres', 2, 'sing');
-INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'i', 'act', 'imp', 'pres', 2, 'sing');
-INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (5, 'ate', 'act', 'imp', 'pres', 2, 'plur');
-INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (6, 'ete', 'act', 'imp', 'pres', 2, 'plur');
-INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (7, 'ite', 'act', 'imp', 'pres', 2, 'plur');
-INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (8, 'ite', 'act', 'imp', 'pres', 2, 'plur');
-
 -- Table: VerbEndActImpFut
 CREATE TABLE VerbEndActImpFut ( 
     _id    INTEGER PRIMARY KEY,
@@ -246,6 +207,26 @@ INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person]
 INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (14, 'ento', 'act', 'imp', 'fut', 3, 'plur');
 INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (15, 'unto', 'act', 'imp', 'fut', 3, 'plur');
 INSERT INTO [VerbEndActImpFut] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (16, 'iunto', 'act', 'imp', 'fut', 3, 'plur');
+
+-- Table: VerbEndActImpPres
+CREATE TABLE VerbEndActImpPres ( 
+    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    [End],
+    Voice,
+    Mood,
+    Tense,
+    Person,
+    Number 
+);
+
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'a', 'act', 'imp', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'e', 'act', 'imp', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'e', 'act', 'imp', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'i', 'act', 'imp', 'pres', 2, 'sing');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (5, 'ate', 'act', 'imp', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (6, 'ete', 'act', 'imp', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (7, 'ite', 'act', 'imp', 'pres', 2, 'plur');
+INSERT INTO [VerbEndActImpPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (8, 'ite', 'act', 'imp', 'pres', 2, 'plur');
 
 -- Table: VerbEndActIndFut
 CREATE TABLE VerbEndActIndFut ( 
@@ -355,6 +336,38 @@ INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person
 INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (23, 'ent', 'act', 'ind', 'pres', 3, 'plur');
 INSERT INTO [VerbEndActIndPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (24, 'unt', 'act', 'ind', 'pres', 3, 'plur');
 
+-- Table: VerbEndActInfPerf
+CREATE TABLE VerbEndActInfPerf ( 
+    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    [End],
+    Voice,
+    Mood,
+    Tense,
+    Person,
+    Number 
+);
+
+INSERT INTO [VerbEndActInfPerf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'isse', 'act', 'inf', 'perf', null, null);
+INSERT INTO [VerbEndActInfPerf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'isse', 'act', 'inf', 'perf', null, null);
+INSERT INTO [VerbEndActInfPerf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'isse', 'act', 'inf', 'perf', null, null);
+INSERT INTO [VerbEndActInfPerf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'isse', 'act', 'inf', 'perf', null, null);
+
+-- Table: VerbEndActInfPres
+CREATE TABLE VerbEndActInfPres ( 
+    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    [End],
+    Voice,
+    Mood,
+    Tense,
+    Person,
+    Number 
+);
+
+INSERT INTO [VerbEndActInfPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'are', 'act', 'inf', 'pres', null, null);
+INSERT INTO [VerbEndActInfPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'ere', 'act', 'inf', 'pres', null, null);
+INSERT INTO [VerbEndActInfPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'ere', 'act', 'inf', 'pres', null, null);
+INSERT INTO [VerbEndActInfPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'ire', 'act', 'inf', 'pres', null, null);
+
 -- Table: VerbEndActSubjImperf
 CREATE TABLE VerbEndActSubjImperf ( 
     _id    INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -426,35 +439,3 @@ INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Perso
 INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (22, 'eamus', 'act', 'subj', 'pres', 3, 'plur');
 INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (23, 'atmus', 'act', 'subj', 'pres', 3, 'plur');
 INSERT INTO [VerbEndActSubjPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (24, 'iamus', 'act', 'subj', 'pres', 3, 'plur');
-
--- Table: VerbEndActInfPerf
-CREATE TABLE VerbEndActInfPerf ( 
-    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
-    [End],
-    Voice,
-    Mood,
-    Tense,
-    Person,
-    Number 
-);
-
-INSERT INTO [VerbEndActInfPerf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'isse', 'act', 'inf', 'perf', null, null);
-INSERT INTO [VerbEndActInfPerf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'isse', 'act', 'inf', 'perf', null, null);
-INSERT INTO [VerbEndActInfPerf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'isse', 'act', 'inf', 'perf', null, null);
-INSERT INTO [VerbEndActInfPerf] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'isse', 'act', 'inf', 'perf', null, null);
-
--- Table: VerbEndActInfPres
-CREATE TABLE VerbEndActInfPres ( 
-    _id    INTEGER PRIMARY KEY AUTOINCREMENT,
-    [End],
-    Voice,
-    Mood,
-    Tense,
-    Person,
-    Number 
-);
-
-INSERT INTO [VerbEndActInfPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (1, 'are', 'act', 'inf', 'pres', null, null);
-INSERT INTO [VerbEndActInfPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (2, 'ere', 'act', 'inf', 'pres', null, null);
-INSERT INTO [VerbEndActInfPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (3, 'ere', 'act', 'inf', 'pres', null, null);
-INSERT INTO [VerbEndActInfPres] ([_id], [End], [Voice], [Mood], [Tense], [Person], [Number]) VALUES (4, 'ire', 'act', 'inf', 'pres', null, null);
