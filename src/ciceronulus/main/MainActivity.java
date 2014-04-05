@@ -8,6 +8,9 @@ import java.io.IOException;
 
 
 
+
+import alice.tuprolog.InvalidTheoryException;
+import alice.tuprolog.MalformedGoalException;
 import android.R.id;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -45,7 +48,7 @@ private static final String DATABASEname = "paradigm.db";
 		
 		Helper help = new Helper(getBaseContext(), DATABASEname);
 		Log.d(TAG, "new Helper()"); 
-	
+	/*
 		
 		 try  
 	      { 
@@ -57,7 +60,7 @@ private static final String DATABASEname = "paradigm.db";
 	      { 
 	         throw new Error("ErrorCopyingDatabase"); 
 	     } 
-		
+		*/
 		
 	// SQLiteDatabase db = help.getWritableDatabase();
 	 //SQLiteDatabase db = SQLiteDatabase.openDatabase(help.getDBpath()+DATABASEname, null, 0);
@@ -69,11 +72,15 @@ private static final String DATABASEname = "paradigm.db";
 	}
 
 	
-	public void onClick(View view) {
-		Log.d(TAG, "c:");
+	public void onClick(View view) throws InvalidTheoryException, MalformedGoalException, IOException {
+		
 		EditText input = (EditText) findViewById(R.id.input);
 		String inputText = input.getText().toString();
 		Log.d(TAG, inputText);
+		
+		GrammarCheck g = new GrammarCheck("s(X).");
+		boolean p = g.correct(getApplicationContext()); 
+		Log.d(TAG, p+"" );
 
 	}
 	

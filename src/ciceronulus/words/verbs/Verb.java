@@ -1,4 +1,6 @@
-package ciceronulus.words;
+package ciceronulus.words.verbs;
+
+import ciceronulus.words.Word;
 
 public class Verb extends Word{
 

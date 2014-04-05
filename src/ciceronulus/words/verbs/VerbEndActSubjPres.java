@@ -1,9 +1,8 @@
-package ciceronulus.words;
+package ciceronulus.words.verbs;
 
 import java.util.ArrayList;
 
-public class VerbEndActImpFut extends VerbEnding{
-	
+public class VerbEndActSubjPres extends VerbEnding{
 	String end;
 	String voice;
 	String mood;
@@ -11,17 +10,17 @@ public class VerbEndActImpFut extends VerbEnding{
 	String person; 
 	String number;
 
-	public VerbEndActImpFut(String end, String voice,String mood, String tense, String person, String number) {
+
+	public VerbEndActSubjPres(String end, String voice,String mood, String tense, String person, String number) {
 		this.end = end;
 		this.voice = voice;
 		this.mood = mood;
 		this.tense = tense;
 		this.person = person;
 		this.number = number;
-		
-	}
 	
-	public ArrayList<String> addToParse(ArrayList<String> Parse){
+	}
+public ArrayList<String> addToParse(ArrayList<String> Parse){
 		
 		Parse.add(end);
 		Parse.add(voice);
@@ -29,9 +28,9 @@ public class VerbEndActImpFut extends VerbEnding{
 		Parse.add(tense);
 		Parse.add(person);
 		Parse.add(number);
+	
 		
 		return Parse;
 		
 	}
-	
 }

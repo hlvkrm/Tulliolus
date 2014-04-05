@@ -1,4 +1,4 @@
-package ciceronulus.words;
+package ciceronulus.words.numerals;
 
 public class NumeralOrdinal extends Numeral{
 

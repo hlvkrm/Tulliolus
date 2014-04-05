@@ -1,4 +1,4 @@
-package ciceronulus.words;
+package ciceronulus.words.pronouns;
 
 public class PronounDemonstrative extends Pronoun{
 

@@ -1,4 +1,6 @@
-package ciceronulus.words;
+package ciceronulus.words.nouns;
+
+import ciceronulus.words.Word;
 
 public class Noun extends Word{
 
