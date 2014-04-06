@@ -9,6 +9,7 @@ import java.io.IOException;
 
 
 
+
 import alice.tuprolog.InvalidTheoryException;
 import alice.tuprolog.MalformedGoalException;
 import android.R.id;
@@ -26,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
@@ -71,16 +73,22 @@ private static final String DATABASEname = "paradigm.db";
 		
 	}
 
-	
+	String inputText="Salve. Ciceronulus mihi nomen est.";
 	public void onClick(View view) throws InvalidTheoryException, MalformedGoalException, IOException {
 		
 		EditText input = (EditText) findViewById(R.id.input);
-		String inputText = input.getText().toString();
-		Log.d(TAG, inputText);
+		String inputTextRaw = input.getText().toString();
+		Log.d(TAG, inputTextRaw);
+		inputText +="\n"+inputTextRaw;
 		
-		GrammarCheck g = new GrammarCheck("s(X).");
+		GrammarCheck g = new GrammarCheck(inputTextRaw);
 		boolean p = g.correct(getApplicationContext()); 
 		Log.d(TAG, p+"" );
+		
+		inputText +="\n"+p;
+		TextView dialog = (TextView) findViewById(R.id.dialog);
+		dialog.setText(inputText);
+		input.setText(null);
 
 	}
 	

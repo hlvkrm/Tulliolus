@@ -22,7 +22,6 @@ public class GrammarCheck {
 		
 	}
 	public boolean correct(Context context) throws IOException, InvalidTheoryException, MalformedGoalException{
-		boolean gc = false;
 		
 		Prolog pl = new Prolog();
 		
@@ -30,7 +29,7 @@ public class GrammarCheck {
 		AssetManager assManager = context.getAssets();
 		InputStream is0 = null;
 		try {
-		        is0 = assManager.open("latinPars.txt");
+		        is0 = assManager.open("grammar00.pl");
 		    } catch (IOException e) {
 		        // TODO Auto-generated catch block
 		        e.printStackTrace();
@@ -40,7 +39,7 @@ public class GrammarCheck {
 		Theory grammar = new Theory (is1);
 		pl.setTheory(grammar);
 		SolveInfo answer = pl.solve(orderedParsedValues);
-		gc = answer.isSuccess();
-		return gc;
+	
+		return answer.isSuccess();
 	}
 }
