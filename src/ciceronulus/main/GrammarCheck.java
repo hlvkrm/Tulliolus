@@ -18,20 +18,18 @@ public class GrammarCheck {
 	
 	public GrammarCheck(String orderedParsedValues){
 		this.orderedParsedValues = orderedParsedValues;
-		
-		
 	}
+	
+	
 	public boolean correct(Context context) throws IOException, InvalidTheoryException, MalformedGoalException{
 		
 		Prolog pl = new Prolog();
-		
 		
 		AssetManager assManager = context.getAssets();
 		InputStream is0 = null;
 		try {
 		        is0 = assManager.open("grammar00.pl");
 		    } catch (IOException e) {
-		        // TODO Auto-generated catch block
 		        e.printStackTrace();
 		    }
 		InputStream is1 = new BufferedInputStream(is0);
