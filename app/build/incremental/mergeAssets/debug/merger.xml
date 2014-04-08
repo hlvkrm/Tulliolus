@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="19.1.0" >
+        <source path="/Users/hoot/Desktop/Development/_Git/Ciceronulus_androidstudio/app/build/exploded-aar/com.android.support/appcompat-v7/19.1.0/assets" />
+    </dataSet>
+    <dataSet config="19.1.0" >
+        <source path="/Users/hoot/Desktop/Development/_Git/Ciceronulus_androidstudio/app/build/exploded-aar/com.android.support/gridlayout-v7/19.1.0/assets" />
+    </dataSet>
+    <dataSet config="main" >
+        <source path="/Users/hoot/Desktop/Development/_Git/Ciceronulus_androidstudio/app/src/main/assets" >
+            <file
+                name="grammar00.pl"
+                path="/Users/hoot/Desktop/Development/_Git/Ciceronulus_androidstudio/app/src/main/assets/grammar00.pl" />
+            <file
+                name="paradigm.db"
+                path="/Users/hoot/Desktop/Development/_Git/Ciceronulus_androidstudio/app/src/main/assets/paradigm.db" />
+            <file
+                name="paradigm.db?foreign_keys=true"
+                path="/Users/hoot/Desktop/Development/_Git/Ciceronulus_androidstudio/app/src/main/assets/paradigm.db?foreign_keys=true" />
+        </source>
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="/Users/hoot/Desktop/Development/_Git/Ciceronulus_androidstudio/app/src/debug/assets" />
+    </dataSet>
+
+</merger>
