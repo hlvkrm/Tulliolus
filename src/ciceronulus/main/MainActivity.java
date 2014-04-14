@@ -1,22 +1,11 @@
 package ciceronulus.main;
 
+import java.util.ArrayList;
 
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-
-
-
-
-
-import alice.tuprolog.InvalidTheoryException;
-import alice.tuprolog.MalformedGoalException;
-import android.R.id;
+import ciceronulus.words.Word;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
-import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,75 +15,90 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
-String TAG = "main activity";
+	String TAG = MainActivity.class.getCanonicalName();
 
-private static final String DATABASEname = "paradigm.db";
-//private static final String DATABASE_PATH = "/data/data/" + "Ciceronulus" + "/databases/";
-
+    private GrammarCheck check;
+    private static MainActivity mainActivity;
+    Creator create;
+    SQLiteDatabase db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+        mainActivity = this;
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+			.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+	//	db= create.getDatabase();
+        check = new GrammarCheck(this);
 		
-		
-		Helper help = new Helper(getBaseContext(), DATABASEname);
-		Log.d(TAG, "new Helper()"); 
-	/*
-		
-		 try  
-	      { 
-	        //Copy the database from assets 
-	        help.openDatabase(getBaseContext(), DATABASEname); 
-	        Log.d(TAG, "createDatabase database created"); 
-	      }  
-	      catch (IOException mIOException)  
-	      { 
-	         throw new Error("ErrorCopyingDatabase"); 
-	     } 
-		*/
-		
-	// SQLiteDatabase db = help.getWritableDatabase();
-	 //SQLiteDatabase db = SQLiteDatabase.openDatabase(help.getDBpath()+DATABASEname, null, 0);
-		// help.checkDatabase(DATABASE_PATH, DATABASEname)
-		// help.onCreate(db);
-		// Log.d(TAG,db.getPath());
-		
-		
+        create = new Creator(getBaseContext());
+        //create.createNouns();
 	}
 
-	String inputText="Salve. Ciceronulus mihi nomen est.";
-	public void onClick(View view) throws InvalidTheoryException, MalformedGoalException, IOException {
-		
-		EditText input = (EditText) findViewById(R.id.input);
-		String inputTextRaw = input.getText().toString();
-		Log.d(TAG, inputTextRaw);
-		inputText +="\n"+inputTextRaw;
-		
-		GrammarCheck g = new GrammarCheck(inputTextRaw);
-		boolean p = g.correct(getApplicationContext()); 
-		Log.d(TAG, p+"" );
-		
-		inputText +="\n"+p;
-		TextView dialog = (TextView) findViewById(R.id.dialog);
-		dialog.setText(inputText);
-		input.setText(null);
+	public void onClick(View view) {
 
+        switch (view.getId()) {
+
+            case R.id.inputButton: {
+
+                String newInput="";
+            	
+                Log("Input button pressed");
+                EditText input = (EditText) findViewById(R.id.input);
+                String inputTextRaw = input.getText().toString();
+                Log("inputTextRaw: "+inputTextRaw);
+                
+                TextView dialog = (TextView) findViewById(R.id.dialog);
+                int compare = create.compare(inputTextRaw);
+                Log.d(TAG, "compared: "+compare);
+                
+                newInput+= (String) dialog.getText();
+                
+                ArrayList wordList = create.getAllWords();
+                if(compare!=(-1))
+                	{newInput+="\n"+((Word)wordList.get(compare)).toString();}
+              
+                dialog.setText(newInput);
+                
+              /*
+
+                try {
+                    check.correct(inputTextRaw);
+                }
+                catch (Exception e) {
+                    Log.d(MainActivity.class.getCanonicalName(), "Error occurred onClick of button for input: "+inputTextRaw);
+                    e.printStackTrace();
+                }
+                break;*/
+            }
+        }
 	}
-	
+
+    public static void displayResult(String result) {
+        mainActivity.showResultOnScreen(result);
+    }
+
+    private void showResultOnScreen(final String dialog) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                TextView dialog = (TextView) findViewById(R.id.dialog);
+                EditText input = (EditText) findViewById(R.id.input);
+                dialog.setText((CharSequence) dialog);
+                input.setText(null);
+            }
+        });
+    }
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
@@ -121,12 +125,16 @@ private static final String DATABASEname = "paradigm.db";
 		}
 
 		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
+		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_main, container,	false);
 			return rootView;
 		}
 	}
 
+
+    private void Log(String message){
+        Log.d(MainActivity.class.getCanonicalName(),message);
+    }
+    
+    
 }

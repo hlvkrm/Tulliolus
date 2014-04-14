@@ -1,45 +1,65 @@
 package ciceronulus.main;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.util.Log;
+
 import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
-import alice.tuprolog.InvalidTheoryException;
 import alice.tuprolog.MalformedGoalException;
 import alice.tuprolog.Prolog;
 import alice.tuprolog.SolveInfo;
 import alice.tuprolog.Theory;
-import android.content.Context;
-import android.content.res.AssetManager;
 
 public class GrammarCheck {
 
-	String orderedParsedValues;
-	
-	public GrammarCheck(String orderedParsedValues){
-		this.orderedParsedValues = orderedParsedValues;
-		
-		
-	}
-	public boolean correct(Context context) throws IOException, InvalidTheoryException, MalformedGoalException{
-		
-		Prolog pl = new Prolog();
-		
-		
-		AssetManager assManager = context.getAssets();
-		InputStream is0 = null;
-		try {
-		        is0 = assManager.open("grammar00.pl");
-		    } catch (IOException e) {
-		        // TODO Auto-generated catch block
-		        e.printStackTrace();
-		    }
-		InputStream is1 = new BufferedInputStream(is0);
-		
-		Theory grammar = new Theory (is1);
-		pl.setTheory(grammar);
-		SolveInfo answer = pl.solve(orderedParsedValues);
-	
-		return answer.isSuccess();
-	}
+    private static Prolog prolog;
+    private static Context context;
+
+
+    public GrammarCheck(Context context) {
+        this.context = context;
+
+        prolog = new Prolog();
+
+        AssetManager assManager = context.getAssets();
+        try {
+            Log("Reading grammar00.pl from Assets");
+            InputStream is0 = assManager.open("grammar00.pl");
+
+            Log("Loading grammar to Prolog");
+            Theory grammar = new Theory(new BufferedInputStream(is0));
+            prolog.setTheory(grammar);
+        } catch (Exception e) {
+            Log("Error reading grammar00.pl from Assets");
+            e.printStackTrace();
+        }
+        Log("Prolog ready");
+    }
+
+    private void Log(String message) {
+        Log.d(GrammarCheck.class.getCanonicalName(), message);
+    }
+
+
+    public void correct(final String orderedParsedValues) throws MalformedGoalException{
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean result = false;
+                try {
+                    SolveInfo answer = prolog.solve(orderedParsedValues);
+                    result = answer.isSuccess();
+
+                } catch (Exception e) {
+                    Log("Error occurred during Prolog stuff. Check log");
+                    e.printStackTrace();
+                    MainActivity.displayResult(result+ "Exception occurred during Prolog stuff. Check log for error trace.");
+                }
+                MainActivity.displayResult(result+ "");
+            }
+        }).start();
+    }
 }

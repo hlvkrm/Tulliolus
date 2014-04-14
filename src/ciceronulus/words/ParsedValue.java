@@ -1,6 +1,6 @@
 package ciceronulus.words;
 
-public class ParsedValue extends Word//??
+public class ParsedValue 
 {
 	String pv;
 	
