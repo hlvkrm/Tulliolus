@@ -92,12 +92,14 @@ public class Creator {
 	
 		Log.d(TAG, "COUNT(*) FROM Noun");
 		Cursor cursor=null;
-		try{
+		
 		cursor = db.rawQuery("SELECT COUNT(_id) AS countid FROM Noun", null);
 		cursor.moveToFirst();
-		
+	
 		Log.d(TAG, "nounCount");
+
 		int nounCount = cursor.getInt(0);
+		cursor.close();
 		Log.d(TAG, nounCount+"");
 		
 		String stem, end, gender;
@@ -133,16 +135,19 @@ public class Creator {
 					cursor = db.rawQuery("SELECT Stem FROM Noun WHERE (_id = "+id+") ", null);
 					cursor.moveToFirst();
 					stem = cursor.getString(0);
+					cursor.close();
 		
 					
 					cursor = db.rawQuery("SELECT Declension FROM Noun WHERE (_id = "+id+") ", null);
 					cursor.moveToFirst();
 					String declension = cursor.getString(0);
+					cursor.close();
 				
 					
 					cursor = db.rawQuery("SELECT DeclensionType FROM Noun WHERE (_id = "+id+") ", null);
 					cursor.moveToFirst();
 					String declensionType = cursor.getString(0);
+					cursor.close();
 					
 					
 					cursor = db.rawQuery("SELECT " + endings.get(endingIndex)
@@ -151,6 +156,7 @@ public class Creator {
 									+ "\")", null);
 					cursor.moveToFirst();
 					end = cursor.getString(0);
+					cursor.close();
 					if (end == null){
 						end="";
 					}
@@ -159,6 +165,7 @@ public class Creator {
 					cursor = db.rawQuery("SELECT Gender FROM Noun WHERE (_id = "+id+") ", null);
 					cursor.moveToFirst();
 					gender = cursor.getString(0);
+					cursor.close();
 			
 		
 					Parse.add(gender);
@@ -187,21 +194,19 @@ public class Creator {
 		Log.d(TAG,"all nouns loaded");
 		
 		}
-		finally{cursor.close();}
+	
 		
-	            }
+	       
 	     
 	
 
 	public void createVerbs(){
 		Cursor cursor=null;
-		try{
-			
+	
 		int id=1;
 		
 		cursor = db.rawQuery("SELECT COUNT(*) FROM Verb", null);
 		cursor.moveToFirst();
-		
 		int verbCount = cursor.getInt(0);
 		Log.d(TAG,"verbCount: " +verbCount);
 		cursor.close();
@@ -231,7 +236,7 @@ public class Creator {
 	
 		Log.d(TAG, "cursor open");
 		
-		while (id<(verbCount)){
+		while (id<(verbCount+1)){
 	
 			
 	int endingIndex=0;
@@ -239,10 +244,13 @@ public class Creator {
 
 			cursor = db.rawQuery("SELECT COUNT(_id) FROM "+endings.get(endingIndex), null);
 			cursor.moveToFirst();
+		
 			int endings0 = cursor.getInt(0); //number of endings (i.e. entries) in an endings table (e.g. VerbEndPassSubjImperf)
 			int endings0Index = 0;
 			int conjugationValue=1;
-			
+				cursor.close();
+				
+				
 			while (endings0Index<endings0){
 				
 				
@@ -251,11 +259,13 @@ public class Creator {
 					cursor = db.rawQuery("SELECT StemPresent FROM Verb WHERE (_id = "+id+")", null);
 					cursor.moveToFirst();
 					String stemPresent = cursor.getString(0);
+					cursor.close();
 					Log.d(TAG, stemPresent);
 					
 					cursor = db.rawQuery("SELECT Conjugation FROM Verb WHERE (_id = "+id+")", null);
 					cursor.moveToFirst();
 					int conjugation = cursor.getInt(0);
+					cursor.close();
 					
 					
 					int conjugationIndex = getTableIndex(conjugation, conjugationValue);
@@ -266,6 +276,7 @@ public class Creator {
 							, null);
 					cursor.moveToFirst();
 					String end = cursor.getString(0);
+					cursor.close();
 					
 					
 					cursor = db.rawQuery(
@@ -273,18 +284,21 @@ public class Creator {
 							, null);
 					cursor.moveToFirst();
 					String voice = cursor.getString(0);
+					cursor.close();
 					
 					cursor = db.rawQuery(
 							"SELECT Mood FROM "+endings.get(endingIndex)+" WHERE (_id = "+conjugationIndex+") "
 							, null);
 					cursor.moveToFirst();
 					String mood = cursor.getString(0);
+					cursor.close();
 					
 					cursor = db.rawQuery(
 							"SELECT Tense FROM "+endings.get(endingIndex)+" WHERE (_id = "+conjugationIndex+") "
 							, null);
 					cursor.moveToFirst();
 					String tense = cursor.getString(0);
+					cursor.close();
 					
 					
 					cursor = db.rawQuery(
@@ -292,12 +306,14 @@ public class Creator {
 							, null);
 					cursor.moveToFirst();
 					String person = cursor.getString(0);
+					cursor.close();
 					
 					cursor = db.rawQuery(
 							"SELECT Number FROM "+endings.get(endingIndex)+" WHERE (_id = "+conjugationIndex+") "
 							, null);
 					cursor.moveToFirst();
 					String number = cursor.getString(0);
+					cursor.close();
 			
 		
 					Parse.add(voice);
@@ -349,6 +365,7 @@ public class Creator {
 							, null);
 					cursor.moveToFirst();
 					String end = cursor.getString(0);
+					cursor.close();
 					
 					
 					cursor = db.rawQuery(
@@ -356,18 +373,21 @@ public class Creator {
 							, null);
 					cursor.moveToFirst();
 					String voice = cursor.getString(0);
+					cursor.close();
 					
 					cursor = db.rawQuery(
 							"SELECT Mood FROM "+endingsCommon.get(endingCommonIndex)+" WHERE (_id = "+conjugationValue+") "
 							, null);
 					cursor.moveToFirst();
 					String mood = cursor.getString(0);
+					cursor.close();
 					
 					cursor = db.rawQuery(
 							"SELECT Tense FROM "+endingsCommon.get(endingCommonIndex)+" WHERE (_id = "+conjugationValue+") "
 							, null);
 					cursor.moveToFirst();
 					String tense = cursor.getString(0);
+					cursor.close();
 					
 					
 					cursor = db.rawQuery(
@@ -375,12 +395,14 @@ public class Creator {
 							, null);
 					cursor.moveToFirst();
 					String person = cursor.getString(0);
+					cursor.close();
 					
 					cursor = db.rawQuery(
 							"SELECT Number FROM "+endingsCommon.get(endingCommonIndex)+" WHERE (_id = "+conjugationValue+") "
 							, null);
 					cursor.moveToFirst();
 					String number = cursor.getString(0);
+					cursor.close();
 			
 		
 					Parse.add(voice);
@@ -407,13 +429,11 @@ public class Creator {
 		}
 		
 		id++;
-	}
-		}
-		
 	
-		finally{cursor.close();}
 		
-		Log.d(TAG, "cursor close");
+		
+		}
+	
 		Log.d(TAG,"all verbs loaded");
 		
 
