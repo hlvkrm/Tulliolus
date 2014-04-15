@@ -1,6 +1,6 @@
 package ciceronulus.main;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
 import alice.tuprolog.MalformedGoalException;
 import alice.tuprolog.SolveInfo;
@@ -17,7 +17,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
 
+import ciceronulus.words.IrregularNoun;
 import ciceronulus.words.IrregularVerb;
+import ciceronulus.words.Pronoun;
 import ciceronulus.words.Word;
 
 public class Creator {
@@ -26,24 +28,24 @@ public class Creator {
     private Helper help;
     public SQLiteDatabase db;
 	
-	ArrayList<Word> allNouns;
-	ArrayList<Word> allVerbs;
-	ArrayList<Word> allPronouns;
-	ArrayList<Word> allAdverbs;
-	ArrayList<Word> allAdjectives;
-	ArrayList<Word> allNumerals;
-	ArrayList<Word> ALLWORDS;
+    static Vector<Word> allNouns;
+	static Vector<Word> allVerbs;
+	static Vector<Word> allPronouns;
+	static Vector<Word> allAdverbs;
+	static Vector<Word> allAdjectives;
+	static Vector<Word> allNumerals;
+	static Vector<Word> ALLWORDS;
 
-	IrregularVerb iv = new IrregularVerb();
+	IrregularVerb iv = new IrregularVerb(); IrregularNoun in = new IrregularNoun(); Pronoun p = new Pronoun();
 	String TAG = "creating";
 	
 	public Creator(Context c) {
-		allNouns = new ArrayList();
-		allVerbs = new ArrayList();
-		allPronouns = new ArrayList();
-		allAdverbs = new ArrayList();
-		allVerbs = new ArrayList();
-		ALLWORDS = new ArrayList();
+		allNouns = new Vector();
+		allVerbs = new Vector();
+		allPronouns = new Vector();
+		allAdverbs = new Vector();
+		allVerbs = new Vector();
+		ALLWORDS = new Vector();
 		
 		help = new Helper(c, DATABASEname);
 		db = help.getWritableDatabase();
@@ -52,6 +54,8 @@ public class Creator {
 		createVerbs();
 		
 		ALLWORDS.addAll(allNouns);
+		ALLWORDS.addAll(in.getIrregularNouns());
+		ALLWORDS.addAll(p.getPronouns());
 		ALLWORDS.addAll(allVerbs);
 		ALLWORDS.addAll(iv.getIrregularVerbs());
 
@@ -60,7 +64,9 @@ public class Creator {
 	
 	}
 	
-	public ArrayList getAllWords(){
+	public Creator(){}
+	
+	public Vector getAllWords(){
 
 		return ALLWORDS;
 	}
@@ -76,11 +82,11 @@ public class Creator {
 		return all;
 		
 	}
-	public ArrayList getAllNouns(){
+	public Vector getAllNouns(){
 		return allNouns;
 	}
 	
-	public ArrayList getAllVerbs(){
+	public Vector getAllVerbs(){
 		return allVerbs;
 	}
 	
@@ -108,7 +114,7 @@ public class Creator {
 		
 		
 		Log.d(TAG, "Creating endings arraylist");
-		ArrayList <String> endings = new ArrayList();
+		Vector <String> endings = new Vector();
 		endings.add("NomSing");
 		endings.add("AccSing");
 		endings.add("GenSing");
@@ -130,7 +136,7 @@ public class Creator {
 		while (endingIndex<endings.size()){	//creating each declension of a noun
 			
 				if ((endingIndex!=endings.size()) && !(endingIndex > endings.size()) ){
-					ArrayList <String> Parse = new ArrayList<String>();
+					Vector <String> Parse = new Vector<String>();
 					
 					cursor = db.rawQuery("SELECT Stem FROM Noun WHERE (_id = "+id+") ", null);
 					cursor.moveToFirst();
@@ -168,8 +174,9 @@ public class Creator {
 					cursor.close();
 			
 		
-					Parse.add(gender);
+					
 					Parse.add(endings.get(endingIndex));
+					Parse.add(gender);
 																//adds gender and declension to Parse arraylist
 					
 
@@ -195,10 +202,6 @@ public class Creator {
 		
 		}
 	
-		
-	       
-	     
-	
 
 	public void createVerbs(){
 		Cursor cursor=null;
@@ -214,7 +217,7 @@ public class Creator {
 		
 		Word newWord;
 	
-		ArrayList <String> endings = new ArrayList<String>();
+		Vector <String> endings = new Vector<String>();
 		endings.add("VerbEndActIndFut");
 		endings.add("VerbEndActIndImperf");
 		endings.add("VerbEndActIndPres");
@@ -226,7 +229,7 @@ public class Creator {
 		endings.add("VerbEndPassSubjImperf");
 		endings.add("VerbEndPassSubjPres");
 		
-		ArrayList <String> endingsCommon = new ArrayList<String>();
+		Vector <String> endingsCommon = new Vector<String>();
 		endingsCommon.add("VerbEndActIndPerf");
 		endingsCommon.add("VerbEndActIndPerfFut");
 		endingsCommon.add("VerbEndActIndPluperf");
@@ -254,7 +257,7 @@ public class Creator {
 			while (endings0Index<endings0){
 				
 				
-					ArrayList <String> Parse = new ArrayList<String>();
+					Vector <String> Parse = new Vector<String>();
 					
 					cursor = db.rawQuery("SELECT StemPresent FROM Verb WHERE (_id = "+id+")", null);
 					cursor.moveToFirst();
@@ -352,7 +355,7 @@ public class Creator {
 			while (endings0Index<endings0){
 				
 				
-					ArrayList <String> Parse = new ArrayList<String>();
+					Vector <String> Parse = new Vector<String>();
 					
 					cursor = db.rawQuery("SELECT StemPerfect FROM Verb WHERE (_id = "+id+")", null);
 					cursor.moveToFirst();
@@ -461,43 +464,10 @@ public class Creator {
 		return db;
 	}
 	
-	public int compare(String w){
-		boolean same=false;
-		
-		int index = -1;
-		
-		int count = 0;
-		
-	    while (count<ALLWORDS.size() && same==false){
-	    	
-	    Word compareWord = (Word) ALLWORDS.get(count);
-	    Log.d(TAG, compareWord.toString());
-	    
-	    String compareString = compareWord.getInstance();
-	    Log.d(TAG, compareString+"//"+w);
-	    
-	    if (compareString.equals(w)){
-	    	 Log.d(TAG, "TRUE");
-	    	index = count;
-	    	same = true;
-	    }
-	    
-	    count++;
-	    }
-	    
-		return index;
-	}
-	
+	//public int compare(String w) {MOVED TO GRAMMARCHECK}
+
 	public int getTableIndex(int conjugation, int conjugationValue){
-		//conjugationValue:
-		//		1s = 1		1p = 4	
-		//		2s = 2		2p = 5
-		//		3s = 3		3p = 6
-		
 		int i = (conjugationValue*4)-(4-conjugation);
-			//nota bene: 4 because there are 4 different conjugations
-		
 		return i;
-		
 	}
 }

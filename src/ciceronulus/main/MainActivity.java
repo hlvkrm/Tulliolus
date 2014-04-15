@@ -1,10 +1,12 @@
 package ciceronulus.main;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
+import ciceronulus.process.GrammarCheck;
 import ciceronulus.words.Word;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -42,6 +44,7 @@ public class MainActivity extends ActionBarActivity {
         //create.createNouns();
 	}
 
+
 	public void onClick(View view) {
 
         switch (view.getId()) {
@@ -56,12 +59,12 @@ public class MainActivity extends ActionBarActivity {
                 Log("inputTextRaw: "+inputTextRaw);
                 
                 TextView dialog = (TextView) findViewById(R.id.dialog);
-                int compare = create.compare(inputTextRaw);
+                int compare = check.compare(inputTextRaw);
                 Log.d(TAG, "compared: "+compare);
                 
                 newInput+= (String) dialog.getText();
                 
-                ArrayList wordList = create.getAllWords();
+                Vector wordList = create.getAllWords();
                 if(compare!=(-1))
                 	{newInput+="\n"+((Word)wordList.get(compare)).toString();}
               

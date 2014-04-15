@@ -1,6 +1,6 @@
 package ciceronulus.words;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
 import android.database.sqlite.SQLiteDatabase;
 import ciceronulus.main.Creator;
@@ -10,10 +10,10 @@ public class Word {
 String instance;
 String category;
 String note;
-ArrayList<String> Parse;
+Vector<String> Parse;
 
 
-public Word (String instance, String category, String note, ArrayList<String> Parse){
+public Word (String instance, String category, String note, Vector<String> Parse){
 		this.instance = instance;
 		this.category = category;
 		this.note = note;
@@ -38,7 +38,7 @@ public String getNote(){
 	return category;
 }
 
-public ArrayList<String> getParse(){
+public Vector<String> getParse(){
 	
 	return Parse;
 }
