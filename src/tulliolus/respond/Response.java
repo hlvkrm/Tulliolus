@@ -2,11 +2,17 @@ package tulliolus.respond;
 
 public class Response {
 	
-	String preposition;
-	String wordCase;
+	String type, mod;
 	
-	public Response(String preposition, String wordCase){
-		this.preposition = preposition;
-		this.wordCase = wordCase;
+	public Response(String type, String mod){
+		this.type = type;
+		this.mod = mod;
 	}
+
+	
+	public String getType(){return type;}
+	public String getMod(){return mod;}
+	public void setType(String type){this.type = type;}
+	public void setMod(String mod){this.mod = mod;}
+	
 }

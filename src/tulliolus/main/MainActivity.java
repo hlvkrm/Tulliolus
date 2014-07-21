@@ -2,8 +2,8 @@ package tulliolus.main;
 
 import java.util.Vector;
 
-import tulliolus.main.R;
 import tulliolus.process.GrammarCheck;
+import tulliolus.respond.Responder;
 import tulliolus.words.Word;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -24,12 +24,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity{
-	String TAG = MainActivity.class.getCanonicalName();
+	String TAG = "Main Activity";
 
     private GrammarCheck check;
     private static MainActivity mainActivity;
     Creator creator;
     SQLiteDatabase db;
+    
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +41,10 @@ public class MainActivity extends ActionBarActivity{
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 			.add(R.id.container, new PlaceholderFragment()).commit();
-		}
-	
-	    creator = new Creator(this);
+		}Log.d(TAG, "on create");
+	    creator = new Creator();
 	//	db= create.getDatabase();
-        check = new GrammarCheck(this);
+        
 		
 
 
@@ -75,19 +75,30 @@ Log.d(TAG, "onclick");
                 
                TextView dialog = (TextView) findViewById(R.id.dialog);
              String newInput=(String) dialog.getText();
-               
-                String checkString= check.checkExists(inputTextRaw);
-               if (checkString.equals(" "))
+            
+             	check = new GrammarCheck(inputTextRaw);
+                String checkString= check.exists();
+                
+               if (checkString.equals(" ")) //if there were no unidentifiable words in the input
                {
-            	   int compare = check.compare(inputTextRaw);
+            	   
+            	   Responder responder = new Responder(check);
+            	   newInput = responder.generate();
+            	   
+            	   
+            	   /*int compare = check.compare(inputTextRaw);
                    Log.d(TAG, "compared: "+compare);
  
                   
-                   if(compare!=(-1))
+                   if(compare!=(-1)) //if there is a match (there should be a match)
                    	{
                    	
                    	Word word = creator.toWord(compare);
-                   	newInput+=word.toString()+"\n";}
+                   	newInput+=word.toString()+"\n";
+                   	
+                   	
+                   	
+                   	}*/
                  
                    dialog.setText(newInput);
                }
@@ -99,15 +110,8 @@ Log.d(TAG, "onclick");
                input.setText("");
                 
                 
-              /*
-
-                try {
-                    check.correct(inputTextRaw);
-                }
-                catch (Exception e) {
-                    Log.d(MainActivity.class.getCanonicalName(), "Error occurred onClick of button for input: "+inputTextRaw);
-                    e.printStackTrace();
-                }*/
+              
+            
                 break;
             }
             

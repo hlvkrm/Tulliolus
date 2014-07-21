@@ -20,54 +20,29 @@ import alice.tuprolog.SolveInfo;
 import alice.tuprolog.Theory;
 
 public class GrammarCheck {
-
-    private static Prolog prolog;
-    private static Context context;
-    Creator creator;
-   String TAG = "grammar checking";
+	Creator creator;
+	String TAG = "grammar checking";
     SQLiteDatabase db;
-    VectorProcessor process;
-
-    public GrammarCheck(Context context) {
-        this.context = context;
-
-        prolog = new Prolog();
-
-        AssetManager assManager = context.getAssets();
-        try {
-            Log("Reading grammar00.pl from Assets");
-            InputStream is0 = assManager.open("grammar00.pl");
-
-            Log("Loading grammar to Prolog");
-            Theory grammar = new Theory(new BufferedInputStream(is0));
-            prolog.setTheory(grammar);
-        } catch (Exception e) {
-            Log("Error reading grammar00.pl from Assets");
-            e.printStackTrace();
-        }
-        Log("Prolog ready");
-        
-        
-    	
+    Processor process;
+    String input;
+    
+    public GrammarCheck(String input) {
+    	this.input = input;
+    	process = new Processor(input);
         creator = new Creator();
         db = creator.getDatabase();
     }
-
     
-    public String toProlog(String input) throws MalformedGoalException{
-    	String prologInput = "s(";
-    	process = new VectorProcessor(input, context);
-    	Vector parseVector = process.parseVector();
-    	//order(parseVector);
-    	
-    	
-    	////DO SOMETHING WITH PARSE VECTOR
-    	return prologInput;///change
-   
-    }
- 
-    
-    public String checkExists(String input){
+    /**
+     * Checks if every word in the input exists in the database. Returns the partially complete output if there are
+     * any words in the input that does not exist. <br>
+     *  e.g. <br>
+     *  <i>if an input does not exist:</i> return: "homibus", "feminaes", et "sice" <br>
+     *  <i>if all inputs exist:</i> return: " "
+     * 
+     * @return String
+     **/
+    public String exists(){
     	
     	String[] Input = input.split(" ");
     	Vector<String> notExist = new Vector<String>();
@@ -109,6 +84,12 @@ public class GrammarCheck {
     	return not;
     }
     
+    /**
+     * Searches the database for the input word and returns the index (i.e. int value in the "_id" field).
+     * If -1 is returned, this word does not exist in the database.
+     * @param inputWord
+     * @return int
+     */
     public int compare(String inputWord){
 		
 		int index = -1;
@@ -133,15 +114,37 @@ public class GrammarCheck {
 	    
 		return index;
 	}
+   
+    
+    public Processor getProcessor(){
+    	return process;
+    }
+}
 
+    /* prolog = new Prolog();
 
-    public void correct(final String input) throws MalformedGoalException{
+    AssetManager assManager = context.getAssets();
+    try {
+        Log("Reading grammar00.pl from Assets");
+        InputStream is0 = assManager.open("grammar00.pl");
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-            	
-                boolean result = false;
+        Log("Loading grammar to Prolog");
+        Theory grammar = new Theory(new BufferedInputStream(is0));
+        prolog.setTheory(grammar);
+    } catch (Exception e) {
+        Log("Error reading grammar00.pl from Assets");
+        e.printStackTrace();
+    }
+    Log("Prolog ready");
+    
+    */
+
+/*
+    public boolean correct() throws MalformedGoalException{
+   
+    	boolean result = false;
+    	
+   
                 try {
                     SolveInfo answer = prolog.solve(input);
                     result = answer.isSuccess();
@@ -152,15 +155,25 @@ public class GrammarCheck {
                     MainActivity.displayResult(result+ "Exception occurred during Prolog stuff. Check log for error trace.");
                 }
                 MainActivity.displayResult(result+ "");
+                
+                
+                return result;
             }
-        }).start();
-    }
+    */
     
-    private void Log(String message) {
-        Log.d(GrammarCheck.class.getCanonicalName(), message);
-    }
+
+/*
     
-    public VectorProcessor getVectorProcessor(){
-    	return process;
+    public String toProlog(String input) throws MalformedGoalException{
+    	String prologInput = "s(";
+    	process = new VectorProcessor(input, context);
+    	Vector parseVector = process.parseVector();
+    	//order(parseVector);
+    	
+    	
+    	////DO SOMETHING WITH PARSE VECTOR
+    	return prologInput;///change
+   
     }
-}
+ 
+    */

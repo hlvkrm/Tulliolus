@@ -1,311 +1,624 @@
-s(V,W,X,Y,Z,A,B,C,D,E) :- verb(V,W,X,Y,Z,A,B,C,D,E).%% a sentence is a verb
 
-blank([ ]).
+verb(C) :- firstSingVerb(C);
+			secondSingVerb(C);
+			thirdSingVerb(C);
+			firstPlurVerb(C);
+			secondPlurVerb(C);
+			thirdPlurVerb(C).
 
-verb(V,W,X,Y,Z,A,B,C,D,E) :- firstSingVerb(V,W,X,Y,Z,A,B,C,D,E);
-			secondSingVerb(V,W,X,Y,Z,A,B,C,D,E);
-			thirdSingVerb(V,W,X,Y,Z,A,B,C,D,E);
-			firstPlurVerb(V,W,X,Y,Z,A,B,C,D,E);
-			secondPlurVerb(V,W,X,Y,Z,A,B,C,D,E);
-			thirdPlurVerb(V,W,X,Y,Z,A,B,C,D,E).
+firstSingVerb(C):- nomFirstSingNounPhrase(A), accNounPhrase(B), append(A,B,C).
+secondSingVerb(C):- nomSecondSingNounPhrase(A), accNounPhrase(B), append(A,B,C).
+thirdSingVerb(C):- nomThirdSingNounPhrase(A),  accNounPhrase(B), append(A,B,C).
+firstPlurVerb(C):- nomFirstPlurNounPhrase(A),  accNounPhrase(B), append(A,B,C).
+secondPlurVerb(C):- nomSecondPlurNounPhrase(A),  accNounPhrase(B), append(A,B,C).
+thirdPlurVerb(C):- nomThirdPlurNounPhrase(A),  accNounPhrase(B), append(A,B,C).
 
-firstSingVerb(V,W,X,Y,Z,A,B,C,D,E):- firstSingPronounPhrase(V,W,X,Y,Z,A),  accNounPhrase(B,C,D,E).
-secondSingVerb(V,W,X,Y,Z,A,B,C,D,E):- secondSingPronounPhrase(V,W,X,Y,Z,A),  accNounPhrase(B,C,D,E).
-thirdSingVerb(V,W,X,Y,Z,A,B,C,D,E):- thirdSingPronounPhrase(V,W,X,Y,Z,A),  accNounPhrase(B,C,D,E).
-firstPlurVerb(V,W,X,Y,Z,A,B,C,D,E):- firstPlurPronounPhrase(V,W,X,Y,Z,A),  accNounPhrase(B,C,D,E).
-secondPlurVerb(V,W,X,Y,Z,A,B,C,D,E):- secondPlurPronounPhrase(V,W,X,Y,Z,A),  accNounPhrase(B,C,D,E).
-thirdPlurVerb(V,W,X,Y,Z,A,B,C,D,E):- thirdPlurPronounPhrase(V,W,X,Y,Z,A),  accNounPhrase(B,C,D,E).
+nomNounPhrase(C):- (nomSingNounPhrase(A); nomPlurNounPhrase(A)), modifier(B), append(A,B,C).
+%%nomPronouns%%%%%%%%%%%%%%%%%
+nomFirstSingPronoun([nomFirstSingPronoun]).
+nomSecondSingPronoun([nomSecondSingPronoun]).
 
-firstSingPronounPhrase(X,Y,Z,A,B,C):- blank(C);(((firstSingPronoun(X), nomSingNounPhrase(Y,Z));
-					firstSingPronoun(X)), modifier(A,B)).
-secondSingPronounPhrase(X,Y,Z,A,B,C):- blank(C);(((secondSingPronoun(X), nomSingNounPhrase(Y,Z));
-					secondSingPronoun(X)), modifier(A,B)).	
-thirdSingPronounPhrase(X,Y,Z,A,B,C):- blank(C);(((thirdSingPronoun(X), nomSingNounPhrase(Y,Z));
-					thirdSingPronoun(X)), modifier(A,B)).	
-firstPlurPronounPhrase(X,Y,Z,A,B,C):- blank(C);(((firstPlurPronoun(X), nomPlurNounPhrase(Y,Z));
-					firstPlurPronoun(X)), modifier(A,B)).
-secondPlurPronounPhrase(X,Y,Z,A,B,C):- blank(C);(((secondPlurPronoun(X), nomPlurNounPhrase(Y,Z));
-					secondPlurPronoun(X)), modifier(A,B)).	
-thirdPlurPronounPhrase(X,Y,Z,A,B,C):- blank(C);(((thirdPlurPronoun(X), nomPlurNounPhrase(Y,Z));
-					thirdPlurPronoun(X)), modifier(A,B)).																					
+nomFirstSingPronoun([]).
+nomSecondSingPronoun([]).
 
-%%Pronouns
-firstSingPronoun([firstSingPronoun]).
-firstSingPronoun([ ]).
-secondSingPronoun([secondSingPronoun]).
-secondSingPronoun([ ]).
-thirdSingPronoun([thirdSingPronoun]).
-thirdSingPronoun([ ]).
-firstPlurPronoun([firstplurPronoun]).
-firstPlurPronoun([ ]).
-secondPlurPronoun([secondplurPronoun]).
-secondPlurPronoun([ ]).
-thirdPlurPronoun([thirdplurPronoun]).
-thirdPlurPronoun([ ]).
+nomThirdSingPronoun(X):- nomThirdSingMPronoun(X);nomThirdSingFPronoun(X);nomThirdSingNPronoun(X).
+nomThirdSingMPronoun([nomSingMPronoun]).
+nomThirdSingFPronoun([nomSingFPronoun]).
+nomThirdSingNPronoun([nomSingNPronoun]).
+
+nomThirdSingMPronoun([]).
+nomThirdSingFPronoun([]).
+nomThirdSingNPronoun([]).
+
+nomFirstPlurPronoun([nomFirstPlurPronoun]).
+nomSecondPlurPronoun([nomSecondPlurPronoun]).
+
+nomFirstPlurPronoun([]).
+nomSecondPlurPronoun([]).
 
 
+nomThirdPlurPronoun(X):- nomThirdPlurMPronoun(X);nomThirdPlurFPronoun(X);nomThirdPlurNPronoun(X).
+nomThirdPlurMPronoun([nomPlurMPronoun]).
+nomThirdPlurFPronoun([nomPlurFPronoun]).
+nomThirdPlurNPronoun([nomPlurNPronoun]).
+nomThirdPlurMPronoun([]).
+nomThirdPlurFPronoun([]).
+nomThirdPlurNPronoun([]).
 
-nomNounPhrase(X,Y,A,B):- (nomSingNounPhrase(X,Y); nomPlurNounPhrase(X,Y)), modifier(A,B).%% a nomNounPhrase has either a singular or plural noun phrase and a modifier.
+nomSingMRelPronoun([nomSingMRelPronoun]).
+nomSingFRelPronoun([nomSingFRelPronoun]).
+nomSingNRelPronoun([nomSingNRelPronoun]).
+nomPlurMRelPronoun([nomPlurMRelPronoun]).
+nomPlurFRelPronoun([nomPlurFRelPronoun]).
+nomPlurNRelPronoun([nomPlurNRelPronoun]).
 
 %%nomSingNounPhrase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-nomSingNounPhrase(X,Y):- (nomSingMNounPhrase(X,Y);nomSingFNounPhrase(X,Y);nomSingNNounPhrase(X,Y)).
-nomSingMNounPhrase(X,Y):-(nomSingMNoun(X), nomSingMAdjective(Y)).
-nomSingFNounPhrase(X,Y):-(nomSingFNoun(X), nomSingFAdjective(Y)).
-nomSingNNounPhrase(X,Y):-(nomSingNNoun(X), nomSingNAdjective(Y)).
 
+nomFirstSingNounPhrase(C):- nomFirstSingPronoun(A),nomSingNounPhrase(B), append(A,B,C).
+nomSecondSingNounPhrase(C):- nomSecondSingPronoun(A),nomSingNounPhrase(B), append(A,B,C).
+nomThirdSingNounPhrase(C):- nomThirdSingMNounPhrase(C);nomThirdSingFNounPhrase(C);nomThirdSingNNounPhrase(C).
+nomThirdSingMNounPhrase(C):-nomThirdSingMPronoun(A),nomSingMNounPhrase(B), append(A,B,C).
+nomThirdSingFNounPhrase(C):-nomThirdSingFPronoun(A),nomSingFNounPhrase(B), append(A,B,C).
+nomThirdSingNNounPhrase(C):-nomThirdSingNPronoun(A),nomSingNNounPhrase(B), append(A,B,C).
 
-nomSingMNoun([nomSingMNoun]).%% defining singular nouns
+nomSingNounPhrase(C):- (nomSingMNounPhrase(C);nomSingFNounPhrase(C);nomSingNNounPhrase(C)).
+
+	nomSingMNounPhrase1(C):-nomSingMNoun(A), nomSingMAdjective(B), append(A,B,C).
+	%nomSingMRelPronounClause(C):- nomSingMRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	nomSingMRelPronounClause([]).
+nomSingMNounPhrase(C):-	nomSingMNounPhrase1(A),nomSingMRelPronounClause(B), append(A,B,C).	
+
+	nomSingFNounPhrase1(C):-nomSingFNoun(A), nomSingFAdjective(B), append(A,B,C).
+	%nomSingFRelPronounClause(C):- nomSingFRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	nomSingFRelPronounClause([]).
+nomSingFNounPhrase(C):-	nomSingFNounPhrase1(A),nomSingFRelPronounClause(B), append(A,B,C).
+	
+	nomSingNNounPhrase1(C):-nomSingNNoun(A), nomSingNAdjective(B), append(A,B,C).
+	%nomSingNRelPronounClause(C):- nomSingNRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	nomSingNRelPronounClause([]).
+nomSingNNounPhrase(C):-	nomSingNNounPhrase1(A),nomSingNRelPronounClause(B), append(A,B,C).								
+
+nomSingMNoun([nomSingMNoun]).
 nomSingFNoun([nomSingFNoun]).
 nomSingNNoun([nomSingNNoun]).
-
-nomSingMAdjective([ ]).%% defining singular adjectives
 nomSingMAdjective([nomSingMAdjective]).
-nomSingFAdjective([ ]).
 nomSingFAdjective([nomSingFAdjective]).
-nomSingNAdjective([ ]).
 nomSingNAdjective([nomSingNAdjective]).
 
+nomSingMNoun([]).
+nomSingFNoun([]).
+nomSingNNoun([]).
+nomSingMAdjective([]).
+nomSingFAdjective([]).
+nomSingNAdjective([]).
+
 %%%nomPlurNounPhrase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-nomPlurNounPhrase(X,Y):- (nomPlurMNounPhrase(X,Y);nomPlurFNounPhrase(X,Y);nomPlurNNounPhrase(X,Y)).
-nomPlurMNounPhrase(X,Y):-(nomPlurMNoun(X), nomPlurMAdjective(Y)).
-nomPlurFNounPhrase(X,Y):-(nomPlurFNoun(X), nomPlurFAdjective(Y)).
-nomPlurNNounPhrase(X,Y):-(nomPlurNNoun(X), nomPlurNAdjective(Y)).
 
+nomFirstPlurNounPhrase(C):- nomFirstPlurPronoun(A),nomPlurNounPhrase(B), append(A,B,C).
+nomSecondPlurNounPhrase(C):- nomSecondPlurPronoun(A),nomPlurNounPhrase(B), append(A,B,C).
+nomThirdPlurNounPhrase(C):- nomThirdPlurMNounPhrase(C);nomThirdPlurFNounPhrase(C);nomThirdPlurNNounPhrase(C).
+nomThirdPlurMNounPhrase(C):-nomThirdPlurMPronoun(A),nomPlurMNounPhrase(B), append(A,B,C).
+nomThirdPlurFNounPhrase(C):-nomThirdPlurFPronoun(A),nomPlurFNounPhrase(B), append(A,B,C).
+nomThirdPlurNNounPhrase(C):-nomThirdPlurNPronoun(A),nomPlurNNounPhrase(B), append(A,B,C).
 
-nomPlurMNoun([nomPlurMNoun]).%% defining Plural nouns
+nomPlurNounPhrase(C):- (nomPlurMNounPhrase(C);nomPlurFNounPhrase(C);nomPlurNNounPhrase(C)).
+
+nomPlurMNounPhrase1(C):-nomPlurMNoun(A), nomPlurMAdjective(B), append(A,B,C).
+	%nomPlurMRelPronounClause(C):- nomPlurMRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	nomPlurMRelPronounClause([]).
+nomPlurMNounPhrase(C):-	nomPlurMNounPhrase1(A),nomPlurMRelPronounClause(B), append(A,B,C).	
+	nomPlurFNounPhrase1(C):-nomPlurFNoun(A), nomPlurFAdjective(B), append(A,B,C).
+	%nomPlurFRelPronounClause(C):- nomPlurFRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	nomPlurFRelPronounClause([]).
+nomPlurFNounPhrase(C):-	nomPlurFNounPhrase1(A),nomPlurFRelPronounClause(B), append(A,B,C).	
+	nomPlurNNounPhrase1(C):-nomPlurNNoun(A), nomPlurNAdjective(B), append(A,B,C).
+	%nomPlurNRelPronounClause(C):- nomPlurNRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	nomPlurNRelPronounClause([]).
+nomPlurNNounPhrase(C):-	nomPlurNNounPhrase1(A),nomPlurNRelPronounClause(B), append(A,B,C).								
+							
+
+nomPlurMNoun([nomPlurMNoun]).
 nomPlurFNoun([nomPlurFNoun]).
 nomPlurNNoun([nomPlurNNoun]).
-
-nomPlurMAdjective([ ]).%% defining Plural adjectives
 nomPlurMAdjective([nomPlurMAdjective]).
-nomPlurFAdjective([ ]).
 nomPlurFAdjective([nomPlurFAdjective]).
-nomPlurNAdjective([ ]).
 nomPlurNAdjective([nomPlurNAdjective]).
 
+nomPlurMNoun([]).
+nomPlurFNoun([]).
+nomPlurNNoun([]).
+nomPlurMAdjective([]).
+nomPlurFAdjective([]).
+nomPlurNAdjective([]).
 
-accNounPhrase(X,Y,A,B):- (accSingNounPhrase(X,Y); accPlurNounPhrase(X,Y)), modifier(A,B).%% a accNounPhrase has either a singular or plural noun phrase and a modifier.
+
+
+accNounPhrase(C):- (accSingNounPhrase(A); accPlurNounPhrase(A)), modifier(B), append(A,B,C).
+
+%%accPronouns%%%%%%%%%%%%%%%%%
+accFirstSingPronoun([accFirstSingPronoun]).
+accSecondSingPronoun([accSecondSingPronoun]).
+
+accFirstSingPronoun([]).
+accSecondSingPronoun([]).
+
+accThirdSingPronoun(X):- accThirdSingMPronoun(X);accThirdSingFPronoun(X);accThirdSingNPronoun(X).
+accThirdSingMPronoun([accSingMPronoun]).
+accThirdSingFPronoun([accSingFPronoun]).
+accThirdSingNPronoun([accSingNPronoun]).
+
+accThirdSingMPronoun([]).
+accThirdSingFPronoun([]).
+accThirdSingNPronoun([]).
+
+accFirstPlurPronoun([accFirstPlurPronoun]).
+accSecondPlurPronoun([accSecondPlurPronoun]).
+
+accFirstPlurPronoun([]).
+accSecondPlurPronoun([]).
+
+
+accThirdPlurPronoun(X):- accThirdPlurMPronoun(X);accThirdPlurFPronoun(X);accThirdPlurNPronoun(X).
+accThirdPlurMPronoun([accPlurMPronoun]).
+accThirdPlurFPronoun([accPlurFPronoun]).
+accThirdPlurNPronoun([accPlurNPronoun]).
+accThirdPlurMPronoun([]).
+accThirdPlurFPronoun([]).
+accThirdPlurNPronoun([]).
+
+accSingMRelPronoun([accSingMRelPronoun]).
+accSingFRelPronoun([accSingFRelPronoun]).
+accSingNRelPronoun([accSingNRelPronoun]).
+accPlurMRelPronoun([accPlurMRelPronoun]).
+accPlurFRelPronoun([accPlurFRelPronoun]).
+accPlurNRelPronoun([accPlurNRelPronoun]).
 
 %%accSingNounPhrase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-accSingNounPhrase(X,Y):- (accSingMNounPhrase(X,Y);accSingFNounPhrase(X,Y);accSingNNounPhrase(X,Y)).
-accSingMNounPhrase(X,Y):-(accSingMNoun(X), accSingMAdjective(Y);accSingMPronoun(X), accSingMAdjective(Y)).
-accSingFNounPhrase(X,Y):-(accSingFNoun(X), accSingFAdjective(Y);accSingFPronoun(X), accSingFAdjective(Y)).
-accSingNNounPhrase(X,Y):-(accSingNNoun(X), accSingNAdjective(Y);accSingNPronoun(X), accSingNAdjective(Y)).
 
+accFirstSingNounPhrase(C):- accFirstSingPronoun(A),accSingNounPhrase(B), append(A,B,C).
+accSecondSingNounPhrase(C):- accSecondSingPronoun(A),accSingNounPhrase(B), append(A,B,C).
+accThirdSingNounPhrase(C):- accThirdSingMNounPhrase(C);accThirdSingFNounPhrase(C);accThirdSingNNounPhrase(C).
+accThirdSingMNounPhrase(C):-accThirdSingMPronoun(A),accSingMNounPhrase(B), append(A,B,C).
+accThirdSingFNounPhrase(C):-accThirdSingFPronoun(A),accSingFNounPhrase(B), append(A,B,C).
+accThirdSingNNounPhrase(C):-accThirdSingNPronoun(A),accSingNNounPhrase(B), append(A,B,C).
 
-accSingMNoun([accSingMNoun]).%% defining singular nouns
+accSingNounPhrase(C):- (accSingMNounPhrase(C);accSingFNounPhrase(C);accSingNNounPhrase(C)).
+
+	accSingMNounPhrase1(C):-accSingMNoun(A), accSingMAdjective(B), append(A,B,C).
+	%accSingMRelPronounClause(C):- accSingMRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	accSingMRelPronounClause([]).
+accSingMNounPhrase(C):-	accSingMNounPhrase1(A),accSingMRelPronounClause(B), append(A,B,C).	
+
+	accSingFNounPhrase1(C):-accSingFNoun(A), accSingFAdjective(B), append(A,B,C).
+	%accSingFRelPronounClause(C):- accSingFRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	accSingFRelPronounClause([]).
+accSingFNounPhrase(C):-	accSingFNounPhrase1(A),accSingFRelPronounClause(B), append(A,B,C).
+	
+	accSingNNounPhrase1(C):-accSingNNoun(A), accSingNAdjective(B), append(A,B,C).
+	%accSingNRelPronounClause(C):- accSingNRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	accSingNRelPronounClause([]).
+accSingNNounPhrase(C):-	accSingNNounPhrase1(A),accSingNRelPronounClause(B), append(A,B,C).								
+
+accSingMNoun([accSingMNoun]).
 accSingFNoun([accSingFNoun]).
 accSingNNoun([accSingNNoun]).
-
-accSingMPronoun([accSingMPronoun]).%% defining singular pronouns
-accSingFPronoun([accSingFPronoun]).
-accSingNPronoun([accSingNPronoun]).
-
-accSingMAdjective([ ]).%% defining singular adjectives
 accSingMAdjective([accSingMAdjective]).
-accSingFAdjective([ ]).
 accSingFAdjective([accSingFAdjective]).
-accSingNAdjective([ ]).
 accSingNAdjective([accSingNAdjective]).
 
+accSingMNoun([]).
+accSingFNoun([]).
+accSingNNoun([]).
+accSingMAdjective([]).
+accSingFAdjective([]).
+accSingNAdjective([]).
+
 %%%accPlurNounPhrase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-accPlurNounPhrase(X,Y):- (accPlurMNounPhrase(X,Y);accPlurFNounPhrase(X,Y);accPlurNNounPhrase(X,Y)).
-accPlurMNounPhrase(X,Y):-(accPlurMNoun(X), accPlurMAdjective(Y);accPlurMPronoun(X), accPlurMAdjective(Y)).
-accPlurFNounPhrase(X,Y):-(accPlurFNoun(X), accPlurFAdjective(Y);accPlurFPronoun(X), accPlurFAdjective(Y)).
-accPlurNNounPhrase(X,Y):-(accPlurNNoun(X), accPlurNAdjective(Y);accPlurNPronoun(X), accPlurNAdjective(Y)).
 
+accFirstPlurNounPhrase(C):- accFirstPlurPronoun(A),accPlurNounPhrase(B), append(A,B,C).
+accSecondPlurNounPhrase(C):- accSecondPlurPronoun(A),accPlurNounPhrase(B), append(A,B,C).
+accThirdPlurNounPhrase(C):- accThirdPlurMNounPhrase(C);accThirdPlurFNounPhrase(C);accThirdPlurNNounPhrase(C).
+accThirdPlurMNounPhrase(C):-accThirdPlurMPronoun(A),accPlurMNounPhrase(B), append(A,B,C).
+accThirdPlurFNounPhrase(C):-accThirdPlurFPronoun(A),accPlurFNounPhrase(B), append(A,B,C).
+accThirdPlurNNounPhrase(C):-accThirdPlurNPronoun(A),accPlurNNounPhrase(B), append(A,B,C).
 
-accPlurMNoun([accPlurMNoun]).%% defining Plural nouns
+accPlurNounPhrase(C):- (accPlurMNounPhrase(C);accPlurFNounPhrase(C);accPlurNNounPhrase(C)).
+
+accPlurMNounPhrase1(C):-accPlurMNoun(A), accPlurMAdjective(B), append(A,B,C).
+	%accPlurMRelPronounClause(C):- accPlurMRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	accPlurMRelPronounClause([]).
+accPlurMNounPhrase(C):-	accPlurMNounPhrase1(A),accPlurMRelPronounClause(B), append(A,B,C).	
+	accPlurFNounPhrase1(C):-accPlurFNoun(A), accPlurFAdjective(B), append(A,B,C).
+	%accPlurFRelPronounClause(C):- accPlurFRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	accPlurFRelPronounClause([]).
+accPlurFNounPhrase(C):-	accPlurFNounPhrase1(A),accPlurFRelPronounClause(B), append(A,B,C).	
+	accPlurNNounPhrase1(C):-accPlurNNoun(A), accPlurNAdjective(B), append(A,B,C).
+	%accPlurNRelPronounClause(C):- accPlurNRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	accPlurNRelPronounClause([]).
+accPlurNNounPhrase(C):-	accPlurNNounPhrase1(A),accPlurNRelPronounClause(B), append(A,B,C).								
+							
+
+accPlurMNoun([accPlurMNoun]).
 accPlurFNoun([accPlurFNoun]).
 accPlurNNoun([accPlurNNoun]).
-
-accPlurMPronoun([accPlurMPronoun]).%% defining Plural pronouns
-accPlurFPronoun([accPlurFPronoun]).
-accPlurNPronoun([accPlurNPronoun]).
-
-accPlurMAdjective([ ]).%% defining Plural adjectives
 accPlurMAdjective([accPlurMAdjective]).
-accPlurFAdjective([ ]).
 accPlurFAdjective([accPlurFAdjective]).
-accPlurNAdjective([ ]).
 accPlurNAdjective([accPlurNAdjective]).
+
+accPlurMNoun([]).
+accPlurFNoun([]).
+accPlurNNoun([]).
+accPlurMAdjective([]).
+accPlurFAdjective([]).
+accPlurNAdjective([]).
+
+
 
 
 %%modifiers
-modifier([ ]).
-modifier(A,B):- genNounPhrase(A,B); datNounPhrase(A,B); ablNounPhrase(A,B); locNounPhrase(A,B).
-genNounPhrase(X,Y):- (genSingNounPhrase(X,Y); genPlurNounPhrase(X,Y)).
-datNounPhrase(X,Y):- (datSingNounPhrase(X,Y); datPlurNounPhrase(X,Y)).
-ablNounPhrase(X,Y):- (ablSingNounPhrase(X,Y); ablPlurNounPhrase(X,Y)).
-locNounPhrase(X,Y):- (locSingNounPhrase(X,Y); locPlurNounPhrase(X,Y)).
+modifier(C):- genNounPhrase(C); datNounPhrase(C); ablNounPhrase(C).
+genNounPhrase(C):- (genSingNounPhrase(C); genPlurNounPhrase(C)).
+datNounPhrase(C):- (datSingNounPhrase(C); datPlurNounPhrase(C)).
+ablNounPhrase(C):- (ablSingNounPhrase(C); ablPlurNounPhrase(C)).
 
+
+genNounPhrase(C):- (genSingNounPhrase(A); genPlurNounPhrase(A)), modifier(B), append(A,B,C).
+%%genPronouns%%%%%%%%%%%%%%%%%
+genFirstSingPronoun([genFirstSingPronoun]).
+genSecondSingPronoun([genSecondSingPronoun]).
+
+genFirstSingPronoun([]).
+genSecondSingPronoun([]).
+
+genThirdSingPronoun(X):- genThirdSingMPronoun(X);genThirdSingFPronoun(X);genThirdSingNPronoun(X).
+genThirdSingMPronoun([genSingMPronoun]).
+genThirdSingFPronoun([genSingFPronoun]).
+genThirdSingNPronoun([genSingNPronoun]).
+
+genThirdSingMPronoun([]).
+genThirdSingFPronoun([]).
+genThirdSingNPronoun([]).
+
+genFirstPlurPronoun([genFirstPlurPronoun]).
+genSecondPlurPronoun([genSecondPlurPronoun]).
+
+genFirstPlurPronoun([]).
+genSecondPlurPronoun([]).
+
+
+genThirdPlurPronoun(X):- genThirdPlurMPronoun(X);genThirdPlurFPronoun(X);genThirdPlurNPronoun(X).
+genThirdPlurMPronoun([genPlurMPronoun]).
+genThirdPlurFPronoun([genPlurFPronoun]).
+genThirdPlurNPronoun([genPlurNPronoun]).
+genThirdPlurMPronoun([]).
+genThirdPlurFPronoun([]).
+genThirdPlurNPronoun([]).
+
+genSingMRelPronoun([genSingMRelPronoun]).
+genSingFRelPronoun([genSingFRelPronoun]).
+genSingNRelPronoun([genSingNRelPronoun]).
+genPlurMRelPronoun([genPlurMRelPronoun]).
+genPlurFRelPronoun([genPlurFRelPronoun]).
+genPlurNRelPronoun([genPlurNRelPronoun]).
 
 %%genSingNounPhrase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-genSingNounPhrase(X,Y):- (genSingMNounPhrase(X,Y);genSingFNounPhrase(X,Y);genSingNNounPhrase(X,Y)).
-genSingMNounPhrase(X,Y):-(genSingMNoun(X), genSingMAdjective(Y);genSingMPronoun(X), genSingMAdjective(Y)).
-genSingFNounPhrase(X,Y):-(genSingFNoun(X), genSingFAdjective(Y);genSingFPronoun(X), genSingFAdjective(Y)).
-genSingNNounPhrase(X,Y):-(genSingNNoun(X), genSingNAdjective(Y);genSingNPronoun(X), genSingNAdjective(Y)).
 
+genFirstSingNounPhrase(C):- genFirstSingPronoun(A),genSingNounPhrase(B), append(A,B,C).
+genSecondSingNounPhrase(C):- genSecondSingPronoun(A),genSingNounPhrase(B), append(A,B,C).
+genThirdSingNounPhrase(C):- genThirdSingMNounPhrase(C);genThirdSingFNounPhrase(C);genThirdSingNNounPhrase(C).
+genThirdSingMNounPhrase(C):-genThirdSingMPronoun(A),genSingMNounPhrase(B), append(A,B,C).
+genThirdSingFNounPhrase(C):-genThirdSingFPronoun(A),genSingFNounPhrase(B), append(A,B,C).
+genThirdSingNNounPhrase(C):-genThirdSingNPronoun(A),genSingNNounPhrase(B), append(A,B,C).
 
-genSingMNoun([genSingMNoun]).%% defining singular nouns
+genSingNounPhrase(C):- (genSingMNounPhrase(C);genSingFNounPhrase(C);genSingNNounPhrase(C)).
+
+	genSingMNounPhrase1(C):-genSingMNoun(A), genSingMAdjective(B), append(A,B,C).
+	%genSingMRelPronounClause(C):- genSingMRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	genSingMRelPronounClause([]).
+genSingMNounPhrase(C):-	genSingMNounPhrase1(A),genSingMRelPronounClause(B), append(A,B,C).	
+
+	genSingFNounPhrase1(C):-genSingFNoun(A), genSingFAdjective(B), append(A,B,C).
+	%genSingFRelPronounClause(C):- genSingFRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	genSingFRelPronounClause([]).
+genSingFNounPhrase(C):-	genSingFNounPhrase1(A),genSingFRelPronounClause(B), append(A,B,C).
+	
+	genSingNNounPhrase1(C):-genSingNNoun(A), genSingNAdjective(B), append(A,B,C).
+	%genSingNRelPronounClause(C):- genSingNRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	genSingNRelPronounClause([]).
+genSingNNounPhrase(C):-	genSingNNounPhrase1(A),genSingNRelPronounClause(B), append(A,B,C).								
+
+genSingMNoun([genSingMNoun]).
 genSingFNoun([genSingFNoun]).
 genSingNNoun([genSingNNoun]).
-
-genSingMPronoun([genSingMPronoun]).%% defining singular pronouns
-genSingFPronoun([genSingFPronoun]).
-genSingNPronoun([genSingNPronoun]).
-
-genSingMAdjective([ ]).%% defining singular adjectives
 genSingMAdjective([genSingMAdjective]).
-genSingFAdjective([ ]).
 genSingFAdjective([genSingFAdjective]).
-genSingNAdjective([ ]).
 genSingNAdjective([genSingNAdjective]).
 
+genSingMNoun([]).
+genSingFNoun([]).
+genSingNNoun([]).
+genSingMAdjective([]).
+genSingFAdjective([]).
+genSingNAdjective([]).
+
 %%%genPlurNounPhrase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-genPlurNounPhrase(X,Y):- (genPlurMNounPhrase(X,Y);genPlurFNounPhrase(X,Y);genPlurNNounPhrase(X,Y)).
-genPlurMNounPhrase(X,Y):-(genPlurMNoun(X), genPlurMAdjective(Y);genPlurMPronoun(X), genPlurMAdjective(Y)).
-genPlurFNounPhrase(X,Y):-(genPlurFNoun(X), genPlurFAdjective(Y);genPlurFPronoun(X), genPlurFAdjective(Y)).
-genPlurNNounPhrase(X,Y):-(genPlurNNoun(X), genPlurNAdjective(Y);genPlurNPronoun(X), genPlurNAdjective(Y)).
 
+genFirstPlurNounPhrase(C):- genFirstPlurPronoun(A),genPlurNounPhrase(B), append(A,B,C).
+genSecondPlurNounPhrase(C):- genSecondPlurPronoun(A),genPlurNounPhrase(B), append(A,B,C).
+genThirdPlurNounPhrase(C):- genThirdPlurMNounPhrase(C);genThirdPlurFNounPhrase(C);genThirdPlurNNounPhrase(C).
+genThirdPlurMNounPhrase(C):-genThirdPlurMPronoun(A),genPlurMNounPhrase(B), append(A,B,C).
+genThirdPlurFNounPhrase(C):-genThirdPlurFPronoun(A),genPlurFNounPhrase(B), append(A,B,C).
+genThirdPlurNNounPhrase(C):-genThirdPlurNPronoun(A),genPlurNNounPhrase(B), append(A,B,C).
 
-genPlurMNoun([genPlurMNoun]).%% defining Plural nouns
+genPlurNounPhrase(C):- (genPlurMNounPhrase(C);genPlurFNounPhrase(C);genPlurNNounPhrase(C)).
+
+genPlurMNounPhrase1(C):-genPlurMNoun(A), genPlurMAdjective(B), append(A,B,C).
+	%genPlurMRelPronounClause(C):- genPlurMRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	genPlurMRelPronounClause([]).
+genPlurMNounPhrase(C):-	genPlurMNounPhrase1(A),genPlurMRelPronounClause(B), append(A,B,C).	
+	genPlurFNounPhrase1(C):-genPlurFNoun(A), genPlurFAdjective(B), append(A,B,C).
+	%genPlurFRelPronounClause(C):- genPlurFRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	genPlurFRelPronounClause([]).
+genPlurFNounPhrase(C):-	genPlurFNounPhrase1(A),genPlurFRelPronounClause(B), append(A,B,C).	
+	genPlurNNounPhrase1(C):-genPlurNNoun(A), genPlurNAdjective(B), append(A,B,C).
+	%genPlurNRelPronounClause(C):- genPlurNRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	genPlurNRelPronounClause([]).
+genPlurNNounPhrase(C):-	genPlurNNounPhrase1(A),genPlurNRelPronounClause(B), append(A,B,C).								
+							
+
+genPlurMNoun([genPlurMNoun]).
 genPlurFNoun([genPlurFNoun]).
 genPlurNNoun([genPlurNNoun]).
-
-genPlurMPronoun([genPlurMPronoun]).%% defining Plural pronouns
-genPlurFPronoun([genPlurFPronoun]).
-genPlurNPronoun([genPlurNPronoun]).
-
-genPlurMAdjective([ ]).%% defining Plural adjectives
 genPlurMAdjective([genPlurMAdjective]).
-genPlurFAdjective([ ]).
 genPlurFAdjective([genPlurFAdjective]).
-genPlurNAdjective([ ]).
 genPlurNAdjective([genPlurNAdjective]).
 
+genPlurMNoun([]).
+genPlurFNoun([]).
+genPlurNNoun([]).
+genPlurMAdjective([]).
+genPlurFAdjective([]).
+genPlurNAdjective([]).
+
+
+
+datNounPhrase(C):- (datSingNounPhrase(A); datPlurNounPhrase(A)), modifier(B), append(A,B,C).
+%%datPronouns%%%%%%%%%%%%%%%%%
+datFirstSingPronoun([datFirstSingPronoun]).
+datSecondSingPronoun([datSecondSingPronoun]).
+
+datFirstSingPronoun([]).
+datSecondSingPronoun([]).
+
+datThirdSingPronoun(X):- datThirdSingMPronoun(X);datThirdSingFPronoun(X);datThirdSingNPronoun(X).
+datThirdSingMPronoun([datSingMPronoun]).
+datThirdSingFPronoun([datSingFPronoun]).
+datThirdSingNPronoun([datSingNPronoun]).
+
+datThirdSingMPronoun([]).
+datThirdSingFPronoun([]).
+datThirdSingNPronoun([]).
+
+datFirstPlurPronoun([datFirstPlurPronoun]).
+datSecondPlurPronoun([datSecondPlurPronoun]).
+
+datFirstPlurPronoun([]).
+datSecondPlurPronoun([]).
+
+
+datThirdPlurPronoun(X):- datThirdPlurMPronoun(X);datThirdPlurFPronoun(X);datThirdPlurNPronoun(X).
+datThirdPlurMPronoun([datPlurMPronoun]).
+datThirdPlurFPronoun([datPlurFPronoun]).
+datThirdPlurNPronoun([datPlurNPronoun]).
+datThirdPlurMPronoun([]).
+datThirdPlurFPronoun([]).
+datThirdPlurNPronoun([]).
+
+datSingMRelPronoun([datSingMRelPronoun]).
+datSingFRelPronoun([datSingFRelPronoun]).
+datSingNRelPronoun([datSingNRelPronoun]).
+datPlurMRelPronoun([datPlurMRelPronoun]).
+datPlurFRelPronoun([datPlurFRelPronoun]).
+datPlurNRelPronoun([datPlurNRelPronoun]).
+
 %%datSingNounPhrase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-datSingNounPhrase(X,Y):- (datSingMNounPhrase(X,Y);datSingFNounPhrase(X,Y);datSingNNounPhrase(X,Y)).
-datSingMNounPhrase(X,Y):-(datSingMNoun(X), datSingMAdjective(Y);datSingMPronoun(X), datSingMAdjective(Y)).
-datSingFNounPhrase(X,Y):-(datSingFNoun(X), datSingFAdjective(Y);datSingFPronoun(X), datSingFAdjective(Y)).
-datSingNNounPhrase(X,Y):-(datSingNNoun(X), datSingNAdjective(Y);datSingNPronoun(X), datSingNAdjective(Y)).
 
+datFirstSingNounPhrase(C):- datFirstSingPronoun(A),datSingNounPhrase(B), append(A,B,C).
+datSecondSingNounPhrase(C):- datSecondSingPronoun(A),datSingNounPhrase(B), append(A,B,C).
+datThirdSingNounPhrase(C):- datThirdSingMNounPhrase(C);datThirdSingFNounPhrase(C);datThirdSingNNounPhrase(C).
+datThirdSingMNounPhrase(C):-datThirdSingMPronoun(A),datSingMNounPhrase(B), append(A,B,C).
+datThirdSingFNounPhrase(C):-datThirdSingFPronoun(A),datSingFNounPhrase(B), append(A,B,C).
+datThirdSingNNounPhrase(C):-datThirdSingNPronoun(A),datSingNNounPhrase(B), append(A,B,C).
 
-datSingMNoun([datSingMNoun]).%% defining singular nouns
+datSingNounPhrase(C):- (datSingMNounPhrase(C);datSingFNounPhrase(C);datSingNNounPhrase(C)).
+
+	datSingMNounPhrase1(C):-datSingMNoun(A), datSingMAdjective(B), append(A,B,C).
+	%datSingMRelPronounClause(C):- datSingMRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	datSingMRelPronounClause([]).
+datSingMNounPhrase(C):-	datSingMNounPhrase1(A),datSingMRelPronounClause(B), append(A,B,C).	
+
+	datSingFNounPhrase1(C):-datSingFNoun(A), datSingFAdjective(B), append(A,B,C).
+	%datSingFRelPronounClause(C):- datSingFRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	datSingFRelPronounClause([]).
+datSingFNounPhrase(C):-	datSingFNounPhrase1(A),datSingFRelPronounClause(B), append(A,B,C).
+	
+	datSingNNounPhrase1(C):-datSingNNoun(A), datSingNAdjective(B), append(A,B,C).
+	%datSingNRelPronounClause(C):- datSingNRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	datSingNRelPronounClause([]).
+datSingNNounPhrase(C):-	datSingNNounPhrase1(A),datSingNRelPronounClause(B), append(A,B,C).								
+
+datSingMNoun([datSingMNoun]).
 datSingFNoun([datSingFNoun]).
 datSingNNoun([datSingNNoun]).
-
-datSingMPronoun([datSingMPronoun]).%% defining singular pronouns
-datSingFPronoun([datSingFPronoun]).
-datSingNPronoun([datSingNPronoun]).
-
-datSingMAdjective([ ]).%% defining singular adjectives
 datSingMAdjective([datSingMAdjective]).
-datSingFAdjective([ ]).
 datSingFAdjective([datSingFAdjective]).
-datSingNAdjective([ ]).
 datSingNAdjective([datSingNAdjective]).
 
+datSingMNoun([]).
+datSingFNoun([]).
+datSingNNoun([]).
+datSingMAdjective([]).
+datSingFAdjective([]).
+datSingNAdjective([]).
+
 %%%datPlurNounPhrase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-datPlurNounPhrase(X,Y):- (datPlurMNounPhrase(X,Y);datPlurFNounPhrase(X,Y);datPlurNNounPhrase(X,Y)).
-datPlurMNounPhrase(X,Y):-(datPlurMNoun(X), datPlurMAdjective(Y);datPlurMPronoun(X), datPlurMAdjective(Y)).
-datPlurFNounPhrase(X,Y):-(datPlurFNoun(X), datPlurFAdjective(Y);datPlurFPronoun(X), datPlurFAdjective(Y)).
-datPlurNNounPhrase(X,Y):-(datPlurNNoun(X), datPlurNAdjective(Y);datPlurNPronoun(X), datPlurNAdjective(Y)).
 
+datFirstPlurNounPhrase(C):- datFirstPlurPronoun(A),datPlurNounPhrase(B), append(A,B,C).
+datSecondPlurNounPhrase(C):- datSecondPlurPronoun(A),datPlurNounPhrase(B), append(A,B,C).
+datThirdPlurNounPhrase(C):- datThirdPlurMNounPhrase(C);datThirdPlurFNounPhrase(C);datThirdPlurNNounPhrase(C).
+datThirdPlurMNounPhrase(C):-datThirdPlurMPronoun(A),datPlurMNounPhrase(B), append(A,B,C).
+datThirdPlurFNounPhrase(C):-datThirdPlurFPronoun(A),datPlurFNounPhrase(B), append(A,B,C).
+datThirdPlurNNounPhrase(C):-datThirdPlurNPronoun(A),datPlurNNounPhrase(B), append(A,B,C).
 
-datPlurMNoun([datPlurMNoun]).%% defining Plural nouns
+datPlurNounPhrase(C):- (datPlurMNounPhrase(C);datPlurFNounPhrase(C);datPlurNNounPhrase(C)).
+
+datPlurMNounPhrase1(C):-datPlurMNoun(A), datPlurMAdjective(B), append(A,B,C).
+	%datPlurMRelPronounClause(C):- datPlurMRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	datPlurMRelPronounClause([]).
+datPlurMNounPhrase(C):-	datPlurMNounPhrase1(A),datPlurMRelPronounClause(B), append(A,B,C).	
+	datPlurFNounPhrase1(C):-datPlurFNoun(A), datPlurFAdjective(B), append(A,B,C).
+	%datPlurFRelPronounClause(C):- datPlurFRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	datPlurFRelPronounClause([]).
+datPlurFNounPhrase(C):-	datPlurFNounPhrase1(A),datPlurFRelPronounClause(B), append(A,B,C).	
+	datPlurNNounPhrase1(C):-datPlurNNoun(A), datPlurNAdjective(B), append(A,B,C).
+	%datPlurNRelPronounClause(C):- datPlurNRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	datPlurNRelPronounClause([]).
+datPlurNNounPhrase(C):-	datPlurNNounPhrase1(A),datPlurNRelPronounClause(B), append(A,B,C).								
+							
+
+datPlurMNoun([datPlurMNoun]).
 datPlurFNoun([datPlurFNoun]).
 datPlurNNoun([datPlurNNoun]).
-
-datPlurMPronoun([datPlurMPronoun]).%% defining Plural pronouns
-datPlurFPronoun([datPlurFPronoun]).
-datPlurNPronoun([datPlurNPronoun]).
-
-datPlurMAdjective([ ]).%% defining Plural adjectives
 datPlurMAdjective([datPlurMAdjective]).
-datPlurFAdjective([ ]).
 datPlurFAdjective([datPlurFAdjective]).
-datPlurNAdjective([ ]).
 datPlurNAdjective([datPlurNAdjective]).
+
+datPlurMNoun([]).
+datPlurFNoun([]).
+datPlurNNoun([]).
+datPlurMAdjective([]).
+datPlurFAdjective([]).
+datPlurNAdjective([]).
+
+
+
+
+ablNounPhrase(C):- (ablSingNounPhrase(A); ablPlurNounPhrase(A)), modifier(B), append(A,B,C).
+%%ablPronouns%%%%%%%%%%%%%%%%%
+ablFirstSingPronoun([ablFirstSingPronoun]).
+ablSecondSingPronoun([ablSecondSingPronoun]).
+
+ablFirstSingPronoun([]).
+ablSecondSingPronoun([]).
+
+ablThirdSingPronoun(X):- ablThirdSingMPronoun(X);ablThirdSingFPronoun(X);ablThirdSingNPronoun(X).
+ablThirdSingMPronoun([ablSingMPronoun]).
+ablThirdSingFPronoun([ablSingFPronoun]).
+ablThirdSingNPronoun([ablSingNPronoun]).
+
+ablThirdSingMPronoun([]).
+ablThirdSingFPronoun([]).
+ablThirdSingNPronoun([]).
+
+ablFirstPlurPronoun([ablFirstPlurPronoun]).
+ablSecondPlurPronoun([ablSecondPlurPronoun]).
+
+ablFirstPlurPronoun([]).
+ablSecondPlurPronoun([]).
+
+
+ablThirdPlurPronoun(X):- ablThirdPlurMPronoun(X);ablThirdPlurFPronoun(X);ablThirdPlurNPronoun(X).
+ablThirdPlurMPronoun([ablPlurMPronoun]).
+ablThirdPlurFPronoun([ablPlurFPronoun]).
+ablThirdPlurNPronoun([ablPlurNPronoun]).
+ablThirdPlurMPronoun([]).
+ablThirdPlurFPronoun([]).
+ablThirdPlurNPronoun([]).
+
+ablSingMRelPronoun([ablSingMRelPronoun]).
+ablSingFRelPronoun([ablSingFRelPronoun]).
+ablSingNRelPronoun([ablSingNRelPronoun]).
+ablPlurMRelPronoun([ablPlurMRelPronoun]).
+ablPlurFRelPronoun([ablPlurFRelPronoun]).
+ablPlurNRelPronoun([ablPlurNRelPronoun]).
+
 %%ablSingNounPhrase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-ablSingNounPhrase(X,Y):- (ablSingMNounPhrase(X,Y);ablSingFNounPhrase(X,Y);ablSingNNounPhrase(X,Y)).
-ablSingMNounPhrase(X,Y):-(ablSingMNoun(X), ablSingMAdjective(Y);ablSingMPronoun(X), ablSingMAdjective(Y)).
-ablSingFNounPhrase(X,Y):-(ablSingFNoun(X), ablSingFAdjective(Y);ablSingFPronoun(X), ablSingFAdjective(Y)).
-ablSingNNounPhrase(X,Y):-(ablSingNNoun(X), ablSingNAdjective(Y);ablSingNPronoun(X), ablSingNAdjective(Y)).
 
+ablFirstSingNounPhrase(C):- ablFirstSingPronoun(A),ablSingNounPhrase(B), append(A,B,C).
+ablSecondSingNounPhrase(C):- ablSecondSingPronoun(A),ablSingNounPhrase(B), append(A,B,C).
+ablThirdSingNounPhrase(C):- ablThirdSingMNounPhrase(C);ablThirdSingFNounPhrase(C);ablThirdSingNNounPhrase(C).
+ablThirdSingMNounPhrase(C):-ablThirdSingMPronoun(A),ablSingMNounPhrase(B), append(A,B,C).
+ablThirdSingFNounPhrase(C):-ablThirdSingFPronoun(A),ablSingFNounPhrase(B), append(A,B,C).
+ablThirdSingNNounPhrase(C):-ablThirdSingNPronoun(A),ablSingNNounPhrase(B), append(A,B,C).
 
-ablSingMNoun([ablSingMNoun]).%% defining singular nouns
+ablSingNounPhrase(C):- (ablSingMNounPhrase(C);ablSingFNounPhrase(C);ablSingNNounPhrase(C)).
+
+	ablSingMNounPhrase1(C):-ablSingMNoun(A), ablSingMAdjective(B), append(A,B,C).
+	%ablSingMRelPronounClause(C):- ablSingMRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	ablSingMRelPronounClause([]).
+ablSingMNounPhrase(C):-	ablSingMNounPhrase1(A),ablSingMRelPronounClause(B), append(A,B,C).	
+
+	ablSingFNounPhrase1(C):-ablSingFNoun(A), ablSingFAdjective(B), append(A,B,C).
+	%ablSingFRelPronounClause(C):- ablSingFRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	ablSingFRelPronounClause([]).
+ablSingFNounPhrase(C):-	ablSingFNounPhrase1(A),ablSingFRelPronounClause(B), append(A,B,C).
+	
+	ablSingNNounPhrase1(C):-ablSingNNoun(A), ablSingNAdjective(B), append(A,B,C).
+	%ablSingNRelPronounClause(C):- ablSingNRelPronoun(A),thirdSingVerb(B), append(A,B,C).
+	ablSingNRelPronounClause([]).
+ablSingNNounPhrase(C):-	ablSingNNounPhrase1(A),ablSingNRelPronounClause(B), append(A,B,C).								
+
+ablSingMNoun([ablSingMNoun]).
 ablSingFNoun([ablSingFNoun]).
 ablSingNNoun([ablSingNNoun]).
-
-ablSingMPronoun([ablSingMPronoun]).%% defining singular pronouns
-ablSingFPronoun([ablSingFPronoun]).
-ablSingNPronoun([ablSingNPronoun]).
-
-ablSingMAdjective([ ]).%% defining singular adjectives
 ablSingMAdjective([ablSingMAdjective]).
-ablSingFAdjective([ ]).
 ablSingFAdjective([ablSingFAdjective]).
-ablSingNAdjective([ ]).
 ablSingNAdjective([ablSingNAdjective]).
 
+ablSingMNoun([]).
+ablSingFNoun([]).
+ablSingNNoun([]).
+ablSingMAdjective([]).
+ablSingFAdjective([]).
+ablSingNAdjective([]).
+
 %%%ablPlurNounPhrase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-ablPlurNounPhrase(X,Y):- (ablPlurMNounPhrase(X,Y);ablPlurFNounPhrase(X,Y);ablPlurNNounPhrase(X,Y)).
-ablPlurMNounPhrase(X,Y):-(ablPlurMNoun(X), ablPlurMAdjective(Y);ablPlurMPronoun(X), ablPlurMAdjective(Y)).
-ablPlurFNounPhrase(X,Y):-(ablPlurFNoun(X), ablPlurFAdjective(Y);ablPlurFPronoun(X), ablPlurFAdjective(Y)).
-ablPlurNNounPhrase(X,Y):-(ablPlurNNoun(X), ablPlurNAdjective(Y);ablPlurNPronoun(X), ablPlurNAdjective(Y)).
 
+ablFirstPlurNounPhrase(C):- ablFirstPlurPronoun(A),ablPlurNounPhrase(B), append(A,B,C).
+ablSecondPlurNounPhrase(C):- ablSecondPlurPronoun(A),ablPlurNounPhrase(B), append(A,B,C).
+ablThirdPlurNounPhrase(C):- ablThirdPlurMNounPhrase(C);ablThirdPlurFNounPhrase(C);ablThirdPlurNNounPhrase(C).
+ablThirdPlurMNounPhrase(C):-ablThirdPlurMPronoun(A),ablPlurMNounPhrase(B), append(A,B,C).
+ablThirdPlurFNounPhrase(C):-ablThirdPlurFPronoun(A),ablPlurFNounPhrase(B), append(A,B,C).
+ablThirdPlurNNounPhrase(C):-ablThirdPlurNPronoun(A),ablPlurNNounPhrase(B), append(A,B,C).
 
-ablPlurMNoun([ablPlurMNoun]).%% defining Plural nouns
+ablPlurNounPhrase(C):- (ablPlurMNounPhrase(C);ablPlurFNounPhrase(C);ablPlurNNounPhrase(C)).
+
+ablPlurMNounPhrase1(C):-ablPlurMNoun(A), ablPlurMAdjective(B), append(A,B,C).
+	%ablPlurMRelPronounClause(C):- ablPlurMRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	ablPlurMRelPronounClause([]).
+ablPlurMNounPhrase(C):-	ablPlurMNounPhrase1(A),ablPlurMRelPronounClause(B), append(A,B,C).	
+	ablPlurFNounPhrase1(C):-ablPlurFNoun(A), ablPlurFAdjective(B), append(A,B,C).
+	%ablPlurFRelPronounClause(C):- ablPlurFRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	ablPlurFRelPronounClause([]).
+ablPlurFNounPhrase(C):-	ablPlurFNounPhrase1(A),ablPlurFRelPronounClause(B), append(A,B,C).	
+	ablPlurNNounPhrase1(C):-ablPlurNNoun(A), ablPlurNAdjective(B), append(A,B,C).
+	%ablPlurNRelPronounClause(C):- ablPlurNRelPronoun(A),thirdPlurVerb(B), append(A,B,C).
+	ablPlurNRelPronounClause([]).
+ablPlurNNounPhrase(C):-	ablPlurNNounPhrase1(A),ablPlurNRelPronounClause(B), append(A,B,C).								
+							
+
+ablPlurMNoun([ablPlurMNoun]).
 ablPlurFNoun([ablPlurFNoun]).
 ablPlurNNoun([ablPlurNNoun]).
-
-ablPlurMPronoun([ablPlurMPronoun]).%% defining Plural pronouns
-ablPlurFPronoun([ablPlurFPronoun]).
-ablPlurNPronoun([ablPlurNPronoun]).
-
-ablPlurMAdjective([ ]).%% defining Plural adjectives
 ablPlurMAdjective([ablPlurMAdjective]).
-ablPlurFAdjective([ ]).
 ablPlurFAdjective([ablPlurFAdjective]).
-ablPlurNAdjective([ ]).
 ablPlurNAdjective([ablPlurNAdjective]).
 
-%%locSingNounPhrase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-locSingNounPhrase(X,Y):- (locSingMNounPhrase(X,Y);locSingFNounPhrase(X,Y);locSingNNounPhrase(X,Y)).
-locSingMNounPhrase(X,Y):-(locSingMNoun(X), locSingMAdjective(Y);locSingMPronoun(X), locSingMAdjective(Y)).
-locSingFNounPhrase(X,Y):-(locSingFNoun(X), locSingFAdjective(Y);locSingFPronoun(X), locSingFAdjective(Y)).
-locSingNNounPhrase(X,Y):-(locSingNNoun(X), locSingNAdjective(Y);locSingNPronoun(X), locSingNAdjective(Y)).
+ablPlurMNoun([]).
+ablPlurFNoun([]).
+ablPlurNNoun([]).
+ablPlurMAdjective([]).
+ablPlurFAdjective([]).
+ablPlurNAdjective([]).
 
-locSingMNoun([locSingMNoun]).%% defining singular nouns
-locSingFNoun([locSingFNoun]).
-locSingNNoun([locSingNNoun]).
 
-locSingMPronoun([locSingMPronoun]).%% defining singular pronouns
-locSingFPronoun([locSingFPronoun]).
-locSingNPronoun([locSingNPronoun]).
-
-locSingMAdjective([ ]).%% defining singular adjectives
-locSingMAdjective([locSingMAdjective]).
-locSingFAdjective([ ]).
-locSingFAdjective([locSingFAdjective]).
-locSingNAdjective([ ]).
-locSingNAdjective([locSingNAdjective]).
-
-%%%locPlurNounPhrase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% DOES A LOCATIVE PLURAL EXIST??
-locPlurNounPhrase(X,Y):- (locPlurMNounPhrase(X,Y);locPlurFNounPhrase(X,Y);locPlurNNounPhrase(X,Y)).
-locPlurMNounPhrase(X,Y):-locPlurMNoun(X), locPlurMAdjective(Y).
-locPlurFNounPhrase(X,Y):-locPlurFNoun(X), locPlurFAdjective(Y).
-locPlurNNounPhrase(X,Y):-locPlurNNoun(X), locPlurNAdjective(Y).
-
-locPlurMNoun([locPlurMNoun]).%% defining Plural nouns
-locPlurFNoun([locPlurFNoun]).
-locPlurNNoun([locPlurNNoun]).
-
-locPlurMAdjective([ ]).%% defining Plural adjectives
-locPlurMAdjective([locPlurMAdjective]).
-locPlurFAdjective([ ]).
-locPlurFAdjective([locPlurFAdjective]).
-locPlurNAdjective([ ]).
-locPlurNAdjective([locPlurNAdjective]).

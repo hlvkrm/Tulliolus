@@ -1,32 +1,47 @@
 package tulliolus.process.questions;
 
-public class Question {
+import tulliolus.respond.Response;
+import tulliolus.words.Word;
 
+public class Question {
 	boolean answered, relevant;
-	String answer;
-	public Question(boolean answered, String answer, boolean relevant, String response){
-		this.answered = answered;
+	String type;
+	Word answer;
+	Response response;
+	public Question(String type, Word answer, Response response){
+		this.type = type;
 		this.answer = answer;
-		this.relevant = relevant;
+		this.response = response;
 	}
 	
-	public void setAnswered(boolean change){
-		answered = change;
+	public boolean checkRelevancy(){
+		///
+		
+		return relevant;
 	}
-	public boolean getAnswered(){
+	public void setRelevancy(boolean relevant){
+		this.relevant = relevant;
+	}
+	public boolean relevant(){
+		return relevant;
+	}
+	public String getType(){
+		return type;
+	}
+	
+	public boolean answered(){
 		return answered;
 	}
 	
-	public void setAnswer(String answer){
+	public void setAnswer(Word answer){
 		this.answer = answer;
 	}
-	public String getAnswer(){
+	public Word getAnswer(){
+		answered= true;
 		return answer;
 	}
-	public void setRelevancy(boolean change){
-		relevant = change;
-	}
-	public boolean getRelevancy(){
-		return relevant;
+
+	public Response getResponse(){
+		return response;
 	}
 }

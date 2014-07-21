@@ -20,10 +20,10 @@ import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.sql.SQLException;
 
-import tulliolus.words.IrregularNoun;
-import tulliolus.words.IrregularVerb;
-import tulliolus.words.Pronoun;
 import tulliolus.words.Word;
+import tulliolus.words.generate.IrregularNoun;
+import tulliolus.words.generate.IrregularVerb;
+import tulliolus.words.generate.Pronoun;
 
 public class Creator {
 	
@@ -31,7 +31,7 @@ public class Creator {
 	private static final String DATABASEname = "paradigm.db";
     private Helper help;
     public static SQLiteDatabase db;
-	
+	Context c;
     static Vector<Word> allNouns;
 	static Vector<Word> allVerbs;
 	static Vector<Word> allPronouns;
@@ -43,9 +43,9 @@ public class Creator {
 	IrregularVerb iv = new IrregularVerb(); IrregularNoun in = new IrregularNoun(); Pronoun p = new Pronoun();
 	String TAG = "creating";
 	
-	public Creator(Context c) {
+	public Creator() {
 		
-		help = new Helper(c, DATABASEname);
+		help = new Helper(this.c, DATABASEname);
 		db = help.getWritableDatabase();
 		
 		allNouns = new Vector();
@@ -54,13 +54,11 @@ public class Creator {
 		allAdverbs = new Vector();
 		allVerbs = new Vector();
 		ALLWORDS = new Vector();
-		
-		
+	
 	}
 	
-	public Creator(){}
-	
-	  public int getWordCount(){
+
+	public int getWordCount(){
 	  
 			Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM Word", null);
 			cursor.moveToFirst();
@@ -69,7 +67,14 @@ public class Creator {
 	
 			return count;
 	    }
-	  
+	 /**
+	   * Creates a Word object from an index int value. Returns the Word objectification of the instance associated with
+	   * the input index in the database (table Word from paradigm.db).<br>
+	   * Differs from similar method toWord(String instance) in that, because a specific 
+	   * entry in the database is specified, one specific Word object can be returned.
+	   * @param dbIndex
+	   * @return int
+	   */
 	  public Word toWord(int dbIndex){
 		  Word word;
 		  
@@ -83,6 +88,11 @@ public class Creator {
 			String category = cursor.getString(0);
 			cursor.close();
 			
+			cursor = db.rawQuery("SELECT Definition FROM Word WHERE (_id = "+dbIndex+") ", null);
+			cursor.moveToFirst();
+			String definition = cursor.getString(0);
+			cursor.close();
+			
 			cursor = db.rawQuery("SELECT Note FROM Word WHERE (_id = "+dbIndex+") ", null);
 			cursor.moveToFirst();
 			String note = cursor.getString(0);
@@ -93,11 +103,19 @@ public class Creator {
 			String parse = cursor.getString(0);
 			cursor.close();
 			
-			word = new Word (instance, category, note, parse);
+			word = new Word (instance, category, definition, note, parse);
 			
 		  return word;
 	  }
 	  
+	  /**
+	   * Creates a Word object from an instance String. Returns a vector of all the words that matched the input instance in the database
+	   * (table Word from paradigm.db).<br>
+	   * Differs from toWord(int dbIndex) in that only the Instance field of the table is specified; so, multiple entries with the same
+	   * Instance field are accounted for.
+	   * @param instance
+	   * @return Vector
+	   */
 	  public Vector<Word> toWord(String instance){
 		  
 		  Vector<Word> Instances = new Vector<Word>();
@@ -114,6 +132,11 @@ public class Creator {
 			String category = cursor.getString(0);
 			cursor.close();
 			
+			cursor = db.rawQuery("SELECT Definition FROM Word WHERE (_id = "+id+") ", null);
+			cursor.moveToFirst();
+			String definition = cursor.getString(0);
+			cursor.close();
+			
 			cursor = db.rawQuery("SELECT Note FROM Word WHERE (_id = "+id+") ", null);
 			cursor.moveToFirst();
 			String note = cursor.getString(0);
@@ -124,7 +147,7 @@ public class Creator {
 			String parse = cursor.getString(0);
 			cursor.close();
 			
-			word = new Word (instance, category, note, parse);
+			word = new Word (instance, category, definition, note, parse);
 			Instances.add(word);
 			}
 			
@@ -233,6 +256,11 @@ public class Creator {
 					String declensionType = cursor.getString(0);
 					cursor.close();
 					
+					cursor = db.rawQuery("SELECT Definition FROM Word WHERE (_id = "+id+") ", null);
+					cursor.moveToFirst();
+					String definition = cursor.getString(0);
+					cursor.close();
+					
 					cursor = db.rawQuery("SELECT Note FROM Noun WHERE (_id = "+id+") ", null);
 					cursor.moveToFirst();
 					String note = cursor.getString(0);
@@ -262,7 +290,7 @@ public class Creator {
 																//adds gender and declension to Parse arraylist
 					
 
-					newWord = new Word(stem+end, "noun", note,Parse);
+					newWord = new Word(stem+end, "noun", definition, note,Parse);
 					//Log.d(TAG, newWord.toString());
 					allNouns.add(newWord);
 		
@@ -322,12 +350,36 @@ public class Creator {
 		while (id<(verbCount+1)){
 			
 			
-			String note = "";
+			cursor = db.rawQuery("SELECT Definition FROM Word WHERE (_id = "+id+") ", null);
+			cursor.moveToFirst();
+			String definition = cursor.getString(0);
+			cursor.close();
+			
+			
+			String principalParts="";
+			cursor = db.rawQuery("SELECT PP1 FROM Verb WHERE (_id = "+id+");", null);
+			cursor.moveToFirst();
+			principalParts+=cursor.getString(0);
+			cursor.close();
+			cursor = db.rawQuery("SELECT PP2 FROM Verb WHERE (_id = "+id+");", null);
+			cursor.moveToFirst();
+			principalParts+=" "+cursor.getString(0);
+			cursor.close();
+			cursor = db.rawQuery("SELECT PP3 FROM Verb WHERE (_id = "+id+");", null);
+			cursor.moveToFirst();
+			principalParts+=" "+cursor.getString(0);
+			cursor.close();
+			cursor = db.rawQuery("SELECT PP4 FROM Verb WHERE (_id = "+id+");", null);
+			cursor.moveToFirst();
+			principalParts+=" "+cursor.getString(0);
+			cursor.close();
+			
+			String note = principalParts;
 			cursor = db.rawQuery("SELECT Note FROM Verb WHERE (_id = "+id+");", null);
 			cursor.moveToFirst();
 			
 			if(cursor.getString(0) != null) {
-			note=cursor.getString(0);
+			note+=" "+cursor.getString(0);
 			Log.d(TAG, note);
 			cursor.close();
 			}
@@ -417,7 +469,7 @@ public class Creator {
 																//adds gender and declension to Parse arraylist
 					
 
-					newWord = new Word(stemPresent+end, "verb", note, Parse);
+					newWord = new Word(stemPresent+end, "verb",definition, note, Parse);
 					allVerbs.add(newWord);
 					Log.d(TAG, newWord.toString());
 					
@@ -442,6 +494,10 @@ public class Creator {
 		int idCommon=1;
 		while (idCommon<(verbCount+1)){
 			
+			cursor = db.rawQuery("SELECT Definition FROM Word WHERE (_id = "+idCommon+") ", null);
+			cursor.moveToFirst();
+			String definition = cursor.getString(0);
+			cursor.close();
 			
 			String note = "";
 			cursor = db.rawQuery("SELECT Note FROM Verb WHERE (_id = "+idCommon+");", null);
@@ -528,7 +584,7 @@ public class Creator {
 																//adds gender and declension to Parse arraylist
 					
 
-					newWord = new Word(stemPresent+end, "verb",note, Parse);
+					newWord = new Word(stemPresent+end, "verb",definition,note, Parse);
 					allVerbs.add(newWord);
 					Log.d(TAG, newWord.toString());
 					
@@ -576,8 +632,6 @@ public class Creator {
 	public SQLiteDatabase getDatabase(){
 		return db;
 	}
-	
-	//public int compare(String w) {MOVED TO GRAMMARCHECK}
 
 	public int getTableIndex(int conjugation, int conjugationValue){
 		int i = (conjugationValue*4)-(4-conjugation);
@@ -599,9 +653,10 @@ public class Creator {
 				while (count<ALLWORDS.size()) {
 
 	              s=
-	               "INSERT INTO [Word] ([Instance], [Category], [Note], [Parse]) "
+	               "INSERT INTO [Word] ([Instance], [Category], [Definition], [Note], [Parse]) "
 	               + "VALUES ('"+ALLWORDS.get(count).getInstance()+
 	               "', '"+ALLWORDS.get(count).getCategory()+
+	               "', '"+ALLWORDS.get(count).getDefinition()+
 	               "', '"+ALLWORDS.get(count).getNote()+"', '"
 	               		+ ALLWORDS.get(count).parseString()+"');";
 

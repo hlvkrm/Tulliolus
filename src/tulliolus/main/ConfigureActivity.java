@@ -1,8 +1,6 @@
 package tulliolus.main;
 
 import java.util.Vector;
-
-import tulliolus.main.R;
 import tulliolus.process.GrammarCheck;
 import tulliolus.words.Word;
 import android.app.*;
@@ -23,7 +21,7 @@ public class ConfigureActivity extends Activity{
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_configure);
-        creator = new Creator(this);
+        creator = new Creator();
     }
      
 

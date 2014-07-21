@@ -5,16 +5,29 @@ import tulliolus.words.Word;
 
 public class Verb {
 	
-	Word verb;
-	Subject subject;
-	Object object;
+	Word word;
+	int activity, transitivity;
+	
+//get definition from Word class;
+// activity/transitivity: 
+		//activeExclusive:1 passiveExclusive:-1 either:0
+	
+	public Verb(Word word, int activity, int transitivity){
+		this.word = word;
+		this.activity = activity;///get from word
+		this.transitivity = transitivity;//get from word
 
-	public Verb(Word verb, Subject subject, Object object){
-		this.verb = verb;
-		this.subject = subject;
-		this.object = object;
-
-		
 	}
+	
+	public Word getWord(){
+		return word;
+	}
+	public int getActivity(){
+		return activity;
+	}
+	public int getTransitivity(){
+		return transitivity;
+	}
+	public String toString(){return word.toString();}
 
 }
